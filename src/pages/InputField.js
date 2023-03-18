@@ -28,7 +28,7 @@ const InputField = ({ inputState }) => {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Hạn chót</Form.Label>
+          <Form.Label>Hạn chót (MM/DD/YYYY)</Form.Label>
           <Form.Control
             type="datetime-local"
             value={deadline}
