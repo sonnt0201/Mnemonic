@@ -8,7 +8,6 @@ export const CheckDeadline = () => {
     const checker = setInterval(() => {
       const now = new Date();
       tasks.forEach((task) => {
-        //  console.log(now);
         const deadline = new Date(task.deadline).getTime();
         // console.log(deadline <= now);
         if (!task.isDone && deadline <= now) {
