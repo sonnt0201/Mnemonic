@@ -4,6 +4,7 @@ import Accordion from "react-bootstrap/Accordion";
 import InputField from "./InputField";
 import { useTasks } from "../stores";
 import { Content } from "./Content";
+import { CheckDeadline } from "../utils";
 const InputEnum = {
   ADD_TASK: "➕ Thêm Công việc",
   CHANGE_TASK: "🖊️ Chỉnh sửa",
@@ -28,7 +29,7 @@ const HomePage = () => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-
+      <CheckDeadline/>
       <Content tasks = {tasks}/>
     </div>
   );

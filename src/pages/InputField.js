@@ -14,6 +14,7 @@ const InputField = ({ inputState }) => {
   return (
     <Form style={{ textAlign: "left" }}>
       <Row className="mb-3">
+        {/* ĐIỀN TÊN CÔNG VIỆC */}
         <Form.Group as={Col} controlId="formGrid">
           <Form.Label>Tên công việc</Form.Label>
           <Form.Control
@@ -28,7 +29,9 @@ const InputField = ({ inputState }) => {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Hạn chót</Form.Label>
+
+          {/* ĐIỀN NGÀY THÁNG */}
+          <Form.Label>Hạn chót (MM/DD/YYYY)</Form.Label>
           <Form.Control
             type="datetime-local"
             value={deadline}
@@ -39,6 +42,8 @@ const InputField = ({ inputState }) => {
         </Form.Group>
       </Row>
       <Row className="mb-3">
+
+        {/* ĐIỀN GHI CHÚ */}
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Ghi chú</Form.Label>
           <Form.Control
