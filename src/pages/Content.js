@@ -41,7 +41,14 @@ export const Content = ({ tasks }) => {
                   }}>
                     {task.isDone ? "Đã xong" : "Chưa xong"}
                   </Button>
-
+                  <Button variant="danger" onClick={(e) => {
+                    dispatchTasks({
+                      type: ActionEnum.REMOVE_TASK,
+                      payload: task.id
+                    })
+                  }} >
+                    Xóa
+                  </Button>
                 </Card.Body>
                 {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
               </Card>
