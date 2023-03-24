@@ -24,6 +24,7 @@ const InputField = ({ inputState }) => {
             onChange={(e) => {
               setName(e.target.value);
             }}
+            onBlur={(e) => setName(e.target.value.toUpperCase())}
             required
           />
         </Form.Group>
