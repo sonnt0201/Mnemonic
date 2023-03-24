@@ -41,6 +41,7 @@ export const Content = ({ tasks }) => {
                   }}>
                     {task.isOverdue ? "Quá hạn" : task.isDone?"Đã xong" :"Chưa xong"}
                   </Button>
+
                   <Button variant="danger" onClick={(e) => {
                     dispatchTasks({
                       type: ActionEnum.REMOVE_TASK,
@@ -49,8 +50,9 @@ export const Content = ({ tasks }) => {
                   }} >
                     Xóa
                   </Button>
+
                 </Card.Body>
-                {/* <Card.Footer className="text-muted">2 days ago</Card.Footer> */}
+                {/* <Card.Footer className="text-muted">2 days left</Card.Footer> */}
               </Card>
             </Col>
           </>
