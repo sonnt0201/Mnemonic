@@ -3,7 +3,12 @@ import './App.css';
 import MainNavbar  from './MainNavbar';
 import {Routes, Route} from 'react-router-dom'
 import { DonePage, HomePage, OverduePage, PendingPage } from './pages';
+import { useEffect } from 'react';
 function App() {
+  // useEffect để gọi bộ đếm, đếm mỗi phút
+  useEffect(() => {
+    
+  })
   return (
     <div className="App">
       <MainNavbar/>

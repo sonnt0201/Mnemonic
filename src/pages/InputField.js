@@ -71,16 +71,17 @@ const InputField = ({ inputState }) => {
           <Button
             variant="outline-success"
             onClick={(e) => {
+              const task = new Task({
+                id: tasks.length + 1,
+                name: name,
+                deadline: deadline,
+                note: note,
+                isDone: false,
+                steps: 0
+              })
               dispatchTasks({
                 type: ActionEnum.ADD_TASK,
-                payload: new Task({
-                  id: tasks.length + 1,
-                  name: name,
-                  deadline: deadline,
-                  note: note,
-                  isDone: false,
-                  steps: 0
-                }),
+                payload: task,
               });
               console.log(tasks);
             }}

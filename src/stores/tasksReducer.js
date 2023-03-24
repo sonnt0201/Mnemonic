@@ -1,4 +1,4 @@
-import {saveToLocalStorage, StorageEnum} from "../utils";
+import { saveToLocalStorage, StorageEnum } from "../utils";
 import ActionEnum from "./ActionEnum";
 import { Task } from "./Task";
 export const tasksReducer = (tasks, action) => {
@@ -32,10 +32,17 @@ export const tasksReducer = (tasks, action) => {
         return action.payload;
       });
       break;
+    // check quá hạn
+    case ActionEnum.SET_OVERDUE: // payload is id
+      newTasks = tasks.map((task) => {
+        if (task.id !== action.payload) return task;
+        task.isOverdue = true;
+        return task;
+      })
     default:
       newTasks = tasks;
       break;
   }
-  saveToLocalStorage({key: StorageEnum.TASKS_LIST, value: newTasks});
+  saveToLocalStorage({ key: StorageEnum.TASKS_LIST, value: newTasks });
   return newTasks;
 };

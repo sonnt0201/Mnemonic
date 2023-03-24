@@ -34,12 +34,12 @@ export const Content = ({ tasks }) => {
                   <Card.Text>{task.note}</Card.Text>
 
                   <Button variant="primary" onClick={(e) => {
-                      dispatchTasks({
+                      !task.isOverdue && dispatchTasks({
                         type: ActionEnum.TOGGLE_TASK,
                         payload: task.id
                       })
                   }}>
-                    {task.isDone ? "Đã xong" : "Chưa xong"}
+                    {task.isOverdue ? "Quá hạn" : task.isDone?"Đã xong" :"Chưa xong"}
                   </Button>
                   <Button variant="danger" onClick={(e) => {
                     dispatchTasks({
