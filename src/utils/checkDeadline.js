@@ -15,7 +15,7 @@ export const CheckDeadline = () => {
             type: ActionEnum.SET_OVERDUE,
             payload: task.id
           })
-        }
+        } 
       });
     }, TIME);
 

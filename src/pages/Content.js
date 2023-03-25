@@ -26,15 +26,17 @@ export const Content = ({ tasks }) => {
             <Col lg="3" className="mt-3">
               <Card className="">
                 <Card.Header>
-                  <Form.Check type={"checkbox"} 
-                  inline
-                  onChange={e => {
-                    dispatchTasks({
-                      type: ActionEnum.TOGGLE_TASK,
-                      payload: task.id
-                    })
-                  }}
-                   />
+                  <Form.Check
+                    type={"checkbox"}
+                    inline
+                    checked={task.isDone}
+                    onChange={(e) => {
+                      dispatchTasks({
+                        type: ActionEnum.TOGGLE_TASK,
+                        payload: task.id,
+                      });
+                    }}
+                  />
                   {formatTime(task.deadline)}
                 </Card.Header>
 
@@ -53,9 +55,8 @@ export const Content = ({ tasks }) => {
                         payload: task.id,
                       });
                     }}
-
                     onMouseOver={(e) => {
-                      e.target.style.cursor = 'pointer';
+                      e.target.style.cursor = "pointer";
                     }}
                     alt="xoas"
                   />
@@ -63,10 +64,12 @@ export const Content = ({ tasks }) => {
 
                 {
                   <Card.Footer className="text-muted">
-                    {task.deadline
+                    {(task.countDaysLeft > 0)
                       ? `⏰ Còn hơn 
                     ${task.countDaysLeft}
                    ngày nữa`
+                      : (task.countDaysLeft <= 0)
+                      ? `Quá hạn`
                       : `⏰`}
                   </Card.Footer>
                 }

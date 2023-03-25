@@ -1,8 +1,10 @@
+import { Content } from "./Content";
+import { useTasks } from "../stores";
 const OverduePage = () => {
+    const [tasks,] = useTasks();
+
     return (<>
-        <p>
-            OverduePage
-        </p>
+        <Content tasks = {tasks.filter(task => task.isOverdue )} />
     </>)
 }
 
