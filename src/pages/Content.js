@@ -2,9 +2,10 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import { Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
+import Bin from "../assets/bin.svg";
 export const Content = ({ tasks }) => {
   const [, dispatchTasks] = useTasks();
   const formatTime = (time) => {
@@ -23,52 +24,50 @@ export const Content = ({ tasks }) => {
         {tasks.map((task) => (
           <>
             <Col lg="3" className="mt-3">
-              <Card className="text-center">
-                <Card.Header>{formatTime(task.deadline)}</Card.Header>
+              <Card className="">
+                <Card.Header>
+                  <Form.Check type={"checkbox"} 
+                  inline
+                  onChange={e => {
+                    dispatchTasks({
+                      type: ActionEnum.TOGGLE_TASK,
+                      payload: task.id
+                    })
+                  }}
+                   />
+                  {formatTime(task.deadline)}
+                </Card.Header>
 
                 <Card.Body>
                   <Card.Title>{task.name}</Card.Title>
 
                   <Card.Text>{task.note}</Card.Text>
 
-                  <Button
-                    variant="primary"
-                    onClick={(e) => {
-                      !task.isOverdue &&
-                        dispatchTasks({
-                          type: ActionEnum.TOGGLE_TASK,
-                          payload: task.id,
-                        });
-                    }}
-                  >
-                    {task.isOverdue
-                      ? "QUÁ HẠN"
-                      : task.isDone
-                      ? "ĐÃ XONG"
-                      : "CHƯA XONG"}
-                  </Button>
-
-                  <Button
-                    variant="danger"
+                  <img
+                    className="bin-button"
+                    src={Bin}
+                    style={{ width: "8%" }}
                     onClick={(e) => {
                       dispatchTasks({
                         type: ActionEnum.REMOVE_TASK,
                         payload: task.id,
                       });
                     }}
-                  >
-                    XÓA
-                  </Button>
+
+                    onMouseOver={(e) => {
+                      e.target.style.cursor = 'pointer';
+                    }}
+                    alt="xoas"
+                  />
                 </Card.Body>
 
                 {
                   <Card.Footer className="text-muted">
-                    {
-                    task.deadline ?
-                      `⏰ Còn hơn 
+                    {task.deadline
+                      ? `⏰ Còn hơn 
                     ${task.countDaysLeft}
-                   ngày nữa` : `⏰`
-                   }
+                   ngày nữa`
+                      : `⏰`}
                   </Card.Footer>
                 }
               </Card>
