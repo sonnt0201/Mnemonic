@@ -19,7 +19,7 @@ export const tasksReducer = (tasks, action) => {
           // đánh số lại id
           return new Task({ ...task, id: index + 1 });
         });
-      break;
+        break;
     case ActionEnum.TOGGLE_TASK: //payload is id
       newTasks = tasks.map((task) => {
         if (task.id !== action.payload) return task;
@@ -33,16 +33,21 @@ export const tasksReducer = (tasks, action) => {
       });
       break;
     // check quá hạn
-    case ActionEnum.SET_OVERDUE: // payload is id
+    case ActionEnum.COUNT_DAYS_LEFT:
+      // set count day chạy trên tất cả các tasks
+      // payload = now
+      const now = action.payload;
       newTasks = tasks.map((task) => {
-        if (task.id !== action.payload) return task;
-        task.isOverdue = true;
+        task.update();
         return task;
-      })
+      });
+      break;
     default:
       newTasks = tasks;
       break;
   }
+
   saveToLocalStorage({ key: StorageEnum.TASKS_LIST, value: newTasks });
+  // console.log(newTasks);
   return newTasks;
 };

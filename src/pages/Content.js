@@ -6,8 +6,19 @@ import Form from "react-bootstrap/Form";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
 import Bin from "../assets/bin.svg";
+
 export const Content = ({ tasks }) => {
   const [, dispatchTasks] = useTasks();
+  
+  // footer để set số ngày còn lại tới deadline, hiển thị xem task đã hết hạn
+  const footer = (task) => {
+    // return task.countDaysLeft;
+    if (task.isDone) return "✔️ Đã xong";
+     if (task.countDaysLeft <= 0) return "❌ Hết hạn";
+     if (task.countDaysLeft <= 1) return "⏰ Còn chưa đầy 1 ngày";
+     return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
+  };
+
   const formatTime = (time) => {
     if (!time) return "Không có hạn";
     const dateTime = new Date(time);
@@ -17,6 +28,7 @@ export const Content = ({ tasks }) => {
     `;
     return formattedDateTime;
   };
+
   return (
     <Container>
       {" "}
@@ -64,13 +76,7 @@ export const Content = ({ tasks }) => {
 
                 {
                   <Card.Footer className="text-muted">
-                    {(task.countDaysLeft > 0)
-                      ? `⏰ Còn hơn 
-                    ${task.countDaysLeft}
-                   ngày nữa`
-                      : (task.countDaysLeft <= 0)
-                      ? `Quá hạn`
-                      : `⏰`}
+                    { footer(task) }
                   </Card.Footer>
                 }
               </Card>

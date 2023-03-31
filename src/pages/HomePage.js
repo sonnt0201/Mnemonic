@@ -28,7 +28,6 @@ const HomePage = () => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <CheckDeadline/>
       <Content tasks = {tasks}/>
     </div>
   );

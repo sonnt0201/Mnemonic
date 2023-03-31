@@ -10,26 +10,19 @@ export class Task {
     this.isDone = isDone;
     this.note = note;
     this.steps = steps;
-    this.isOverdue = false;
+    this.update();
+  }
+
+  update() {
     const now = new Date();
-    if (deadline) {
-      const deadlineTime = new Date(deadline).getTime();
-      this.countDaysLeft = this.isOverdue
-        ? 0
-        : Math.floor((deadlineTime - now) / (1000 * 3600 * 24));
-    } else {
-      this.countDaysLeft = "";
+    if (this.deadline) {
+      const deadlineTime = new Date(this.deadline).getTime();
+      this.countDaysLeft = (deadlineTime - now) / (1000 * 3600 * 24);
     }
   }
+
 }
-const task = new Task({
-  id: 0,
-  name: "name1",
-  deadline: undefined,
-  isDone: false,
-  note: "note 1",
-  steps: 0,
-});
+
 export function TaskStep({ id, name, isDone }) {
   return Object.assign(this, { id, name, isDone });
 }
