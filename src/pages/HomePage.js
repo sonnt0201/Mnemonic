@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import InputField from "./InputField";
 import { useTasks } from "../stores";
@@ -29,7 +28,6 @@ const HomePage = () => {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <CheckDeadline/>
       <Content tasks = {tasks}/>
     </div>
   );
