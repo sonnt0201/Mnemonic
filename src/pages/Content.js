@@ -74,7 +74,7 @@ export const Content = ({ tasks }) => {
                   />
                 </Card.Body>
 
-                {
+                { task.deadline && 
                   <Card.Footer className="text-muted">
                     { footer(task) }
                   </Card.Footer>

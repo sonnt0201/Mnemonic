@@ -3,7 +3,7 @@
  const PendingPage = () => {
     const [tasks,] = useTasks();
     return (<>
-        <Content tasks = {tasks.filter(task => (task.isDone === false && task.isOverdue === false)) }/>
+        <Content tasks = {tasks.filter(task => (task.isDone === false && (task.countDaysLeft > 0 || !task.countDaysLeft))) }/>
     </>)
 }
 
