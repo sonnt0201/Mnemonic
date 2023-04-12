@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import MainNavbar  from './MainNavbar';
 import {Routes, Route} from 'react-router-dom'
-import { DonePage, HomePage, OverduePage, PendingPage } from './pages';
+import { DonePage, HomePage, OverduePage, PendingPage, DeletedPage } from './pages';
 import { useEffect } from 'react';
 import { useTasks } from './stores';
 import {ActionEnum} from './stores'
@@ -31,6 +31,7 @@ function App() {
         <Route path='/done-page' element = {<DonePage/>} />
         <Route path='/pending-page' element = {<PendingPage/>} />
         <Route path='/overdue-page' element = {<OverduePage/>} />
+        <Route path='/deleted-page' element = {<DeletedPage/>} />
       </Routes>
     </div>
   );

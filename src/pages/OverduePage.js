@@ -4,7 +4,7 @@ const OverduePage = () => {
     const [tasks,] = useTasks();
 
     return (<>
-        <Content tasks = {tasks.filter(task => task.countDaysLeft <= 0 && task.isDone === false )} />
+        <Content tasks = {tasks.filter(task => !task.isDeleted && task.countDaysLeft <= 0 && task.isDone === false )} />
     </>)
 }
 

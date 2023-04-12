@@ -2,15 +2,25 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "../stores/Task";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
-const InputField = ({ inputState }) => {
-  const [name, setName] = useState('');
-  const [deadline, setDeadline] = useState('');
-  const [note, setNote] = useState('');
+
+const InputField = ({ inputVal, setInputVal }) => {
   const [tasks, dispatchTasks] = useTasks();
+
+  useEffect(() => {
+    if (inputVal === -1) return;
+    const placeholderTask = tasks.find((task) => task.id === inputVal);
+    setName(placeholderTask.name);
+    setNote(placeholderTask.note);
+    setDeadline(placeholderTask.deadline);
+  }, [inputVal]);
+
+  const [name, setName] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [note, setNote] = useState("");
   return (
     <Form style={{ textAlign: "left" }}>
       <Row className="mb-3">
@@ -30,7 +40,6 @@ const InputField = ({ inputState }) => {
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-
           {/* ĐIỀN NGÀY THÁNG */}
           <Form.Label>Hạn chót (MM/DD/YYYY)</Form.Label>
           <Form.Control
@@ -41,10 +50,6 @@ const InputField = ({ inputState }) => {
             }}
           />
         </Form.Group>
-      </Row>
-      <Row className="mb-3">
-
-        {/* ĐIỀN GHI CHÚ */}
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Ghi chú</Form.Label>
           <Form.Control
@@ -64,31 +69,67 @@ const InputField = ({ inputState }) => {
             Thêm bước
           </Button>
           <Button variant="outline-danger">Xóa bước</Button>
-        </Form.Group>
-      </Row>
 
-      <Row className="mb-3" style={{ textAlign: "center" }}>
-        <Form.Group as={Col} controlId="formGridEmail">
           <Button
+            style={{
+              marginLeft: "25%",
+              
+            }}
             variant="outline-success"
             onClick={(e) => {
-              const task = new Task({
-                id: tasks.length + 1,
-                name: name,
-                deadline: deadline,
-                note: note,
-                isDone: false,
-                steps: 0
-              })
-              dispatchTasks({
-                type: ActionEnum.ADD_TASK,
-                payload: task,
-              });
-              console.log(tasks);
+              if (inputVal === -1 && name)
+                dispatchTasks({
+                  type: ActionEnum.ADD_TASK,
+                  payload: new Task({
+                    id: tasks.length + 1,
+                    name: name,
+                    deadline: deadline,
+                    note: note,
+                    isDone: false,
+                    steps: 0,
+                  }),
+                });
+              else {
+                dispatchTasks({
+                  type: ActionEnum.CHANGE_TASK,
+                  payload: new Task({
+                    id: inputVal,
+                    name: name,
+                    deadline: deadline,
+                    note: note,
+                    isDone: false,
+                    steps: 0,
+                  }),
+                });
+              }
+
+              setName("");
+              setDeadline("");
+              setNote("");
+              setInputVal(-1);
             }}
           >
             Hoàn thành
           </Button>
+
+            {
+              (inputVal !== -1) &&
+              <Button className="cancel-button ms-3"
+           variant="danger"
+            style={{
+              marginRight: "20%"
+            }}
+
+            onClick={ e => {
+              setName("");
+              setDeadline("");
+              setNote("");
+              setInputVal(-1);
+              
+            }}
+            >Hủy</Button>
+            }
+          
         </Form.Group>
       </Row>
     </Form>

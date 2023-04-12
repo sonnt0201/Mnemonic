@@ -10,9 +10,13 @@ export class Task {
     this.isDone = isDone;
     this.note = note;
     this.steps = steps;
+    this.isDeleted = false;
     this.update();
+    
   }
-
+  toggleDeleted() {
+    this.isDeleted = !this.isDeleted;
+  }
   update() {
     const now = new Date();
     if (this.deadline) {

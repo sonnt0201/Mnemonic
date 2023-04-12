@@ -3,7 +3,7 @@ import { useTasks } from "../stores";
 const DonePage = () => {
     const [tasks,] = useTasks();
     return (<>
-        <Content tasks = {tasks.filter(task => task.isDone)}/>
+        <Content tasks = {tasks.filter(task => (!task.isDeleted && task.isDone))}/>
         
     </>)
 }

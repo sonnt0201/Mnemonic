@@ -6,9 +6,9 @@ import Form from "react-bootstrap/Form";
 import Stack from "react-bootstrap/Stack";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
-import Bin from "../assets/bin.svg";
+import Restore from "../assets/restore.svg";
 
-export const Content = ({ tasks, setInputVal }) => {
+export const DeletedContent = ({ tasks, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
 
   // footer để set số ngày còn lại tới deadline, hiển thị xem task đã hết hạn
@@ -60,39 +60,31 @@ export const Content = ({ tasks, setInputVal }) => {
                   <Card.Title>{task.name}</Card.Title>
 
                   <Card.Text>{task.note}</Card.Text>
-                  <Stack direction="horizontal" gap={3} className="mx-auto justify-content-center"
+                  <Stack direction="horizontal" gap={1} className="mx-auto justify-content-center"
+                  style = {{
+                    cursor: "pointer",
+                  }}
+                  onClick={(e) => {
+                    dispatchTasks({
+                      type: ActionEnum.TOGGLE_DELETED,
+                      payload: task.id,
+                    });
+                  }}
                   >
                     <img
-                      className="bin-button"
-                      src={Bin}
-                      style={{ width: "8%" }}
-                      onClick={(e) => {
-                        dispatchTasks({
-                          type: ActionEnum.TOGGLE_DELETED,
-                          payload: task.id,
-                        });
-                      }}
-                      onMouseOver={(e) => {
-                        e.target.style.cursor = "default";
-                      }}
-                      alt="xoas"
-                    />
-
-                    <p
-                      style={{
-                        fontSize:"2rem",
-                        cursor: "default"
-                      }}
-                      className="change-button"
-                      onClick={(e) => {
-
-                        setInputVal(task.id);
-                      }}
+                      className="restore-button"
+                      src={Restore}
+                      style={{ width: "8%", margin: "0"}}
                       
-                    >
-                      {" "}
-                      🖊️{" "}
-                    </p>
+                     
+                      alt="xoas"
+                    /> 
+                    <h6
+                    style={{
+                        
+                        margin: "auto 0 auto",
+                    }}>Lấy lại</h6>
+                  
                   </Stack>
                 </Card.Body>
 
