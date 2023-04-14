@@ -6,7 +6,7 @@ import { DonePage, HomePage, OverduePage, PendingPage, DeletedPage } from './pag
 import { useEffect } from 'react';
 import { useTasks } from './stores';
 import {ActionEnum} from './stores'
-const TIME = 60*1000;
+const TIME = 1000;
 function App() {
   const [tasks, dispatchTasks] = useTasks();
   // useEffect để gọi bộ đếm, đếm mỗi phút

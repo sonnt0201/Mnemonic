@@ -7,7 +7,7 @@ import Stack from "react-bootstrap/Stack";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
 import Bin from "../assets/bin.svg";
-
+import Change from "../assets/change.svg"
 export const Content = ({ tasks, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
 
@@ -65,7 +65,7 @@ export const Content = ({ tasks, setInputVal }) => {
                     <img
                       className="bin-button"
                       src={Bin}
-                      style={{ width: "8%" }}
+                      style={{ width: "10%" }}
                       onClick={(e) => {
                         dispatchTasks({
                           type: ActionEnum.TOGGLE_DELETED,
@@ -74,25 +74,31 @@ export const Content = ({ tasks, setInputVal }) => {
                       }}
                       onMouseOver={(e) => {
                         e.target.style.cursor = "default";
+                        e.target.style.width = "12%"
+                      }}
+                      onMouseLeave={ e => {
+                        e.target.style.width = "10%"
                       }}
                       alt="xoas"
                     />
-
-                    <p
-                      style={{
-                        fontSize:"2rem",
-                        cursor: "default"
-                      }}
+                    <img
                       className="change-button"
+                      src={Change}
+                      style={{ width: "10%" }}
                       onClick={(e) => {
 
                         setInputVal(task.id);
                       }}
-                      
-                    >
-                      {" "}
-                      🖊️{" "}
-                    </p>
+                      onMouseOver={(e) => {
+                        e.target.style.cursor = "default";
+                        e.target.style.width = "12%"
+                      }}
+                      onMouseLeave={ e => {
+                        e.target.style.width = "10%"
+                      }}
+                      alt="sua"
+                    />
+                    
                   </Stack>
                 </Card.Body>
 

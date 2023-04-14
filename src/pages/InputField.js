@@ -87,6 +87,7 @@ const InputField = ({ inputVal, setInputVal }) => {
                     note: note,
                     isDone: false,
                     steps: 0,
+                    isDeleted : false
                   }),
                 });
               else {
@@ -99,6 +100,7 @@ const InputField = ({ inputVal, setInputVal }) => {
                     note: note,
                     isDone: false,
                     steps: 0,
+                    isDeleted : false
                   }),
                 });
               }
