@@ -1,34 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
+import { Button } from "react-bootstrap";
 import InputField from "./InputField";
 import { useTasks } from "../stores";
 import { Content } from "./Content";
-import { CheckDeadline } from "../utils";
-const InputEnum = {
-  ADD_TASK: "➕ Thêm Công việc",
-  CHANGE_TASK: "🖊️ Chỉnh sửa",
-};
+
 const HomePage = () => {
-  const [showInput, setShowInput] = useState(false);
-  const [inputState, setInputState] = useState(InputEnum.ADD_TASK);
-  const [tasks,] = useTasks();
-  const handleShow = () => {
-    setShowInput((prevShowInput) => !prevShowInput);
-  };
+  
+  const [inputVal, setInputVal] = useState(-1);
+  const [accordionActiveKey, setAccordionActiveKey] = useState("0");
+  useEffect(() => {
+    if (inputVal !== -1) setAccordionActiveKey("0");
+  }, [inputVal]);
+  const [tasks] = useTasks();
+  
   return (
-    <div>
-      <Accordion>
+    <div >
+      <Accordion activeKey={accordionActiveKey}
+      onMouseLeave={() => {
+        setAccordionActiveKey("1");
+      }}
+      onMouseOver={() => {
+        setAccordionActiveKey('0')
+      }}
+      >
         <Accordion.Item eventKey="0">
-          <Accordion.Header>
-            <div> {inputState} </div>
+          <Accordion.Header
+            onClick={(e) => {
+              setAccordionActiveKey((prevKey) => {
+                if (prevKey === "1") return "0";
+                return "1";
+              });
+            }}
+          >
+            <h5>
+              {" "}
+             
+              {inputVal === -1 ? "➕ Thêm công việc" : `🖊️ Chỉnh sửa`}{" "}
+            </h5>
+            
           </Accordion.Header>
           <Accordion.Body>
-            {/* Form điền ở đây */}
-            <InputField />
+            {/* Form điền ở đây 
+            InputField là trường thêm hoặc sửa task, nếu inputVal = -1 => thêm task
+            inputVal != -1, sửa task với task cần sửa có id = inputVal
+            */}
+            <InputField inputVal={inputVal} setInputVal = {setInputVal}/>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <Content tasks = {tasks}/>
+      <Content tasks={tasks.filter(task => !task.isDeleted)} setInputVal={setInputVal} />
     </div>
   );
 };

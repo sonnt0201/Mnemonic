@@ -3,20 +3,21 @@ import Col from "react-bootstrap/Col";
 import { Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
+import Stack from "react-bootstrap/Stack";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
 import Bin from "../assets/bin.svg";
-
-export const Content = ({ tasks }) => {
+import Change from "../assets/change.svg"
+export const Content = ({ tasks, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
-  
+
   // footer để set số ngày còn lại tới deadline, hiển thị xem task đã hết hạn
   const footer = (task) => {
     // return task.countDaysLeft;
     if (task.isDone) return "✔️ Đã xong";
-     if (task.countDaysLeft <= 0) return "❌ Hết hạn";
-     if (task.countDaysLeft <= 1) return "⏰ Còn chưa đầy 1 ngày";
-     return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
+    if (task.countDaysLeft <= 0) return "❌ Hết hạn";
+    if (task.countDaysLeft <= 1) return "⏰ Còn chưa đầy 1 ngày";
+    return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
   };
 
   const formatTime = (time) => {
@@ -48,6 +49,9 @@ export const Content = ({ tasks }) => {
                         payload: task.id,
                       });
                     }}
+                    onMouseOver={(e) => {
+                      e.target.style.cursor = "pointer";
+                    }}
                   />
                   {formatTime(task.deadline)}
                 </Card.Header>
@@ -56,29 +60,53 @@ export const Content = ({ tasks }) => {
                   <Card.Title>{task.name}</Card.Title>
 
                   <Card.Text>{task.note}</Card.Text>
+                  <Stack direction="horizontal" gap={3} className="mx-auto justify-content-center"
+                  >
+                    <img
+                      className="bin-button"
+                      src={Bin}
+                      style={{ width: "10%" }}
+                      onClick={(e) => {
+                        dispatchTasks({
+                          type: ActionEnum.TOGGLE_DELETED,
+                          payload: task.id,
+                        });
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.cursor = "default";
+                        e.target.style.width = "12%"
+                      }}
+                      onMouseLeave={ e => {
+                        e.target.style.width = "10%"
+                      }}
+                      alt="xoas"
+                    />
+                    <img
+                      className="change-button"
+                      src={Change}
+                      style={{ width: "10%" }}
+                      onClick={(e) => {
 
-                  <img
-                    className="bin-button"
-                    src={Bin}
-                    style={{ width: "8%" }}
-                    onClick={(e) => {
-                      dispatchTasks({
-                        type: ActionEnum.REMOVE_TASK,
-                        payload: task.id,
-                      });
-                    }}
-                    onMouseOver={(e) => {
-                      e.target.style.cursor = "pointer";
-                    }}
-                    alt="xoas"
-                  />
+                        setInputVal(task.id);
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.cursor = "default";
+                        e.target.style.width = "12%"
+                      }}
+                      onMouseLeave={ e => {
+                        e.target.style.width = "10%"
+                      }}
+                      alt="sua"
+                    />
+                    
+                  </Stack>
                 </Card.Body>
 
-                { task.deadline && 
+                {task.deadline && (
                   <Card.Footer className="text-muted">
-                    { footer(task) }
+                    {footer(task)}
                   </Card.Footer>
-                }
+                )}
               </Card>
             </Col>
           </>

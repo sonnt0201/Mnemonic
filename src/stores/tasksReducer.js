@@ -6,8 +6,15 @@ export const tasksReducer = (tasks, action) => {
   let newTasks = tasks;
   switch (action.type) {
     case ActionEnum.ADD_TASK: // payload is object
-      newTasks = [...tasks, action.payload];
+      newTasks = [action.payload, ...tasks];
       break;
+    case ActionEnum.TOGGLE_DELETED: // payload is id
+      newTasks = tasks.map((task) => {
+        if (task.id !== action.payload) return task;
+        return new Task({ ...task, isDeleted: !task.isDeleted });
+      });
+      break;
+
     case ActionEnum.REMOVE_TASK: // payload is id
       newTasks = tasks
         .filter(
@@ -19,7 +26,7 @@ export const tasksReducer = (tasks, action) => {
           // đánh số lại id
           return new Task({ ...task, id: index + 1 });
         });
-        break;
+      break;
     case ActionEnum.TOGGLE_TASK: //payload is id
       newTasks = tasks.map((task) => {
         if (task.id !== action.payload) return task;
@@ -36,7 +43,7 @@ export const tasksReducer = (tasks, action) => {
     case ActionEnum.COUNT_DAYS_LEFT:
       // set count day chạy trên tất cả các tasks
       // payload = now
-      const now = action.payload;
+
       newTasks = tasks.map((task) => {
         task.update();
         return task;
