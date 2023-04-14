@@ -1,11 +1,24 @@
-import { Content } from "./Content";
+import { Container, Row } from "react-bootstrap";
+import { Item } from "./Item";
 import { useTasks } from "../stores";
 const OverduePage = () => {
-    const [tasks,] = useTasks();
+  const [tasks] = useTasks();
 
-    return (<>
-        <Content tasks = {tasks.filter(task => !task.isDeleted && task.countDaysLeft <= 0 && task.isDone === false )} />
-    </>)
-}
+  return (
+    <>
+      <Container className="content">
+        <Row>
+          {tasks.map(
+            (task) =>
+              !task.isDeleted 
+              && task.countDaysLeft <= 0 
+              && !task.isDone
+              && <Item task={task} />
+          )}
+        </Row>
+      </Container>
+    </>
+  );
+};
 
-export default OverduePage
+export default OverduePage;

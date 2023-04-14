@@ -1,33 +1,19 @@
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
-import { Row, Card, Form, Stack, Collapse } from "react-bootstrap";
 
-import { useTasks } from "../stores/Contexts";
-import { ActionEnum } from "../stores";
+import {  Card, Stack, Collapse, Col } from "react-bootstrap";
+
+import { useTasks, ActionEnum } from "../stores";
+
 import Restore from "../assets/restore.svg";
 import Remove from "../assets/permanent-remove.svg"
 import { useState } from "react";
+import { formatTime } from "../utils";
+export const DeletedItem = ({ task }) => {
 
-export const DeletedContent = ({ tasks, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
   const [isOpen, setIsOpen] = useState("false");
   const [buttonNote, setButtonNote] = useState("")
   
-  const formatTime = (time) => {
-    if (!time) return "Không có hạn";
-    const dateTime = new Date(time);
-    const formattedDateTime = `
-    ${dateTime.getDate()}/${dateTime.getMonth() + 1}/${dateTime.getFullYear()} 
-    ${dateTime.getHours()}:${dateTime.getMinutes()} 
-    `;
-    return formattedDateTime;
-  };
-
   return (
-    <Container>
-      {" "}
-      <Row>
-        {tasks.map((task) => (
           <>
             <Col lg="3" className="mt-3">
               <Card className="">
@@ -45,7 +31,7 @@ export const DeletedContent = ({ tasks, setInputVal }) => {
                     <img
                       className="bin-button"
                       src={Restore}
-                      style={{ width: "12%", margin: "0" }}
+                      style={{ width: "10%", margin: "0" }}
                       onClick={(e) => {
                         dispatchTasks({
                           type: ActionEnum.TOGGLE_DELETED,
@@ -68,7 +54,7 @@ export const DeletedContent = ({ tasks, setInputVal }) => {
                     <img
                       className="remove-button"
                       src={Remove}
-                      style={{ width: "12%", margin: "0" }}
+                      style={{ width: "10%", margin: "0" }}
                       onClick={(e) => {
                         dispatchTasks({
                           type: ActionEnum.REMOVE_TASK,
@@ -101,8 +87,6 @@ export const DeletedContent = ({ tasks, setInputVal }) => {
               </Card>
             </Col>
           </>
-        ))}{" "}
-      </Row>
-    </Container>
+       
   );
 };

@@ -1,10 +1,16 @@
-import { DeletedContent } from "./DeletedContent";
+import { Container, Row } from "react-bootstrap";
 import { useTasks } from "../stores";
+import { DeletedItem } from "./DeletedItem";
 const DeletedPage = () => {
-    const [tasks,] = useTasks();
-    return (<>
-        <DeletedContent tasks = {tasks.filter(task => task.isDeleted)}/>
-        
-    </>)
-}
-export default DeletedPage
+  const [tasks] = useTasks();
+  return (
+    <>
+      <Container className="deleted-content">
+        <Row>
+          {tasks.map((task) => task.isDeleted && <DeletedItem task={task} />)}
+        </Row>
+      </Container>
+    </>
+  );
+};
+export default DeletedPage;

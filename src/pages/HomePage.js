@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import Accordion from "react-bootstrap/Accordion";
-import { Button } from "react-bootstrap";
+import {  Container, Row,Accordion } from "react-bootstrap";
 import InputField from "./InputField";
 import { useTasks } from "../stores";
-import { Content } from "./Content";
+import { Item } from "./Item";
 
 const HomePage = () => {
   
@@ -24,7 +23,9 @@ const HomePage = () => {
         setAccordionActiveKey('0')
       }}
       >
+
         <Accordion.Item eventKey="0">
+
           <Accordion.Header
             onClick={(e) => {
               setAccordionActiveKey((prevKey) => {
@@ -40,6 +41,7 @@ const HomePage = () => {
             </h5>
             
           </Accordion.Header>
+          
           <Accordion.Body>
             {/* Form điền ở đây 
             InputField là trường thêm hoặc sửa task, nếu inputVal = -1 => thêm task
@@ -48,8 +50,20 @@ const HomePage = () => {
             <InputField inputVal={inputVal} setInputVal = {setInputVal}/>
           </Accordion.Body>
         </Accordion.Item>
+
       </Accordion>
-      <Content tasks={tasks.filter(task => !task.isDeleted)} setInputVal={setInputVal} />
+      
+      <Container className="content">
+        <Row>
+        {
+        tasks.map(task => {
+          if (task.isDeleted) return "";
+          return <Item task = {task} setInputVal={setInputVal} />
+        })
+      }
+        </Row>
+      </Container>
+      
     </div>
   );
 };

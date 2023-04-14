@@ -1,17 +1,21 @@
-import { Content } from "./Content";
+import { Container, Row } from "react-bootstrap";
+import { Item } from "./Item";
 import { useTasks } from "../stores";
 const PendingPage = () => {
   const [tasks] = useTasks();
   return (
     <>
-      <Content
-        tasks={tasks.filter(
-          (task) =>
-            !task.isDeleted &&
-            task.isDone === false &&
-            (task.countDaysLeft > 0 || !task.countDaysLeft)
-        )}
-      />
+      <Container className="content">
+        <Row>
+        {tasks.map(
+            (task) =>
+              !task.isDeleted 
+              && !task.isDone
+              && task.countDaysLeft >= 0
+              && <Item task={task} />
+          )}
+        </Row>
+      </Container>
     </>
   );
 };
