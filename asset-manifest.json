@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mnemonic/static/css/main.073c9b0a.css",
-    "main.js": "/mnemonic/static/js/main.d2f6986b.js",
+    "main.js": "/mnemonic/static/js/main.5d4c5ccb.js",
     "static/js/787.1a8e646b.chunk.js": "/mnemonic/static/js/787.1a8e646b.chunk.js",
     "static/media/bin.svg": "/mnemonic/static/media/bin.1af4754795ee60455ee60cf8ceeb2b3c.svg",
     "static/media/logo.svg": "/mnemonic/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
@@ -10,11 +10,11 @@
     "static/media/permanent-remove.svg": "/mnemonic/static/media/permanent-remove.59cd0ae2c0b35b91a0fe752327a523b1.svg",
     "static/media/change.svg": "/mnemonic/static/media/change.11f8175786d5db638c2594a9b4a143be.svg",
     "main.073c9b0a.css.map": "/mnemonic/static/css/main.073c9b0a.css.map",
-    "main.d2f6986b.js.map": "/mnemonic/static/js/main.d2f6986b.js.map",
+    "main.5d4c5ccb.js.map": "/mnemonic/static/js/main.5d4c5ccb.js.map",
     "787.1a8e646b.chunk.js.map": "/mnemonic/static/js/787.1a8e646b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.d2f6986b.js"
+    "static/js/main.5d4c5ccb.js"
   ]
 }
