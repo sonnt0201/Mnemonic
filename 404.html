@@ -2,14 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Page not found</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+    <script>
+      // Redirect to index.html if page not found
+      if (window.location.pathname !== '/index.html' && !window.location.pathname.startsWith('/static/')) {
+        window.location.replace('/index.html');
+      }
+    </script>
   </head>
   <body>
-    <script>
-      const path = window.location.pathname.replace(/\/$/, '');
-      const url = path + '/index.html';
-      window.location.replace(url);
-    </script>
+    <p>Page not found. Redirecting to home page...</p>
   </body>
 </html>
