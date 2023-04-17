@@ -7,7 +7,7 @@ import { Task } from "../stores/Task";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
 
-const InputField = ({ inputVal, setInputVal }) => {
+export const InputField = ({ inputVal, setInputVal }) => {
   const [tasks, dispatchTasks] = useTasks();
 
   useEffect(() => {
