@@ -29,6 +29,7 @@ export const InputField = ({ inputVal, setInputVal }) => {
           <Form.Label>Tên công việc</Form.Label>
           <Form.Control
             type="text"
+            autoComplete="off"
             placeholder="Tên công việc"
             value={name}
             onChange={(e) => {
@@ -63,16 +64,10 @@ export const InputField = ({ inputVal, setInputVal }) => {
         </Form.Group>
       </Row>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Button variant="outline-primary" className="me-3">
-            Thêm bước
-          </Button>
-          <Button variant="outline-danger">Xóa bước</Button>
-
+     
           <Button
             style={{
-              marginLeft: "25%",
+              // marginLeft: "25%",
               
             }}
             variant="outline-success"
@@ -131,9 +126,7 @@ export const InputField = ({ inputVal, setInputVal }) => {
             }}
             >Hủy</Button>
             }
-          
-        </Form.Group>
-      </Row>
+    
     </Form>
   );
 };

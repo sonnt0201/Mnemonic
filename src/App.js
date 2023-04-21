@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import MainNavbar  from './MainNavbar';
 import {Routes, Route} from 'react-router-dom'
-import { DonePage, HomePage, OverduePage, PendingPage, DeletedPage } from './pages';
+import { DonePage, HomePage, OverduePage, PendingPage, DeletedPage, ChatPage } from './pages';
 import { useEffect } from 'react';
 import { useTasks } from './stores';
 import {ActionEnum} from './stores'
@@ -27,11 +27,12 @@ function App() {
     <div className="App">
       <MainNavbar/>
       <Routes>
-        <Route path='/' element = {<HomePage/>} />
-        <Route path='/done-page' element = {<DonePage/>} />
-        <Route path='/pending-page' element = {<PendingPage/>} />
-        <Route path='/overdue-page' element = {<OverduePage/>} />
-        <Route path='/deleted-page' element = {<DeletedPage/>} />
+        <Route path='/mnemonic' element = {<HomePage/>} />
+        <Route path='/mnemonic/done-page' element = {<DonePage/>} />
+        <Route path='/mnemonic/pending-page' element = {<PendingPage/>} />
+        <Route path='/mnemonic/overdue-page' element = {<OverduePage/>} />
+        <Route path='/mnemonic/deleted-page' element = {<DeletedPage/>} />
+        <Route path='/mnemonic/chatgpt' element = {<ChatPage/>}/>
       </Routes>
     </div>
   );

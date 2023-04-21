@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Page Not Found</title>
+    <script>
+      // Redirect to index.html if page not found
+      if (window.location.pathname !== '/mnemonic' && !window.location.pathname.startsWith('/static/')) {
+        window.location.replace('/mnemonic');
+      }
+    </script>
+  </head>
+  <body>
+    <p>Page not found. Redirecting to home page...</p>
+  </body>
+</html>
