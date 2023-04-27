@@ -7,7 +7,17 @@ import { Task } from "../stores/Task";
 import { useTasks } from "../stores/Contexts";
 import { ActionEnum } from "../stores";
 
-export const InputField = ({ inputVal, setInputVal }) => {
+export const InputField = ({
+  inputVal,
+  setInputVal,
+  name,
+  setName,
+  deadline,
+  setDeadline,
+  note,
+  setNote,
+  handleSubmit
+}) => {
   const [tasks, dispatchTasks] = useTasks();
 
   useEffect(() => {
@@ -18,28 +28,12 @@ export const InputField = ({ inputVal, setInputVal }) => {
     setDeadline(placeholderTask.deadline);
   }, [inputVal]);
 
-  const [name, setName] = useState("");
-  const [deadline, setDeadline] = useState("");
-  const [note, setNote] = useState("");
+  
+
+ 
   return (
     <Form style={{ textAlign: "left" }}>
       <Row className="mb-3">
-        {/* ĐIỀN TÊN CÔNG VIỆC */}
-        <Form.Group as={Col} controlId="formGrid">
-          <Form.Label>Tên công việc</Form.Label>
-          <Form.Control
-            type="text"
-            autoComplete="off"
-            placeholder="Tên công việc"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            onBlur={(e) => setName(e.target.value.toUpperCase())}
-            required
-          />
-        </Form.Group>
-
         <Form.Group as={Col} controlId="formGridPassword">
           {/* ĐIỀN NGÀY THÁNG */}
           <Form.Label>Hạn chót (MM/DD/YYYY)</Form.Label>
@@ -64,69 +58,9 @@ export const InputField = ({ inputVal, setInputVal }) => {
         </Form.Group>
       </Row>
 
-     
-          <Button
-            style={{
-              // marginLeft: "25%",
-              
-            }}
-            variant="outline-success"
-            onClick={(e) => {
-              if (inputVal === -1 && name)
-                dispatchTasks({
-                  type: ActionEnum.ADD_TASK,
-                  payload: new Task({
-                    id: tasks.length + 1,
-                    name: name,
-                    deadline: deadline,
-                    note: note,
-                    isDone: false,
-                    steps: 0,
-                    isDeleted : false
-                  }),
-                });
-              else {
-                dispatchTasks({
-                  type: ActionEnum.CHANGE_TASK,
-                  payload: new Task({
-                    id: inputVal,
-                    name: name,
-                    deadline: deadline,
-                    note: note,
-                    isDone: false,
-                    steps: 0,
-                    isDeleted : false
-                  }),
-                });
-              }
-
-              setName("");
-              setDeadline("");
-              setNote("");
-              setInputVal(-1);
-            }}
-          >
-            Hoàn thành
-          </Button>
-
-            {
-              (inputVal !== -1) &&
-              <Button className="cancel-button ms-3"
-           variant="danger"
-            style={{
-              marginRight: "20%"
-            }}
-
-            onClick={ e => {
-              setName("");
-              setDeadline("");
-              setNote("");
-              setInputVal(-1);
-              
-            }}
-            >Hủy</Button>
-            }
     
+
+      
     </Form>
   );
 };

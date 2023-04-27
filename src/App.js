@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import MainNavbar  from './MainNavbar';
 import {Routes, Route} from 'react-router-dom'
@@ -6,7 +6,7 @@ import { DonePage, HomePage, OverduePage, PendingPage, DeletedPage, ChatPage } f
 import { useEffect } from 'react';
 import { useTasks } from './stores';
 import {ActionEnum} from './stores'
-const TIME = 60*1000;
+const TIME = 1000;
 function App() {
   const [tasks, dispatchTasks] = useTasks();
   // useEffect để gọi bộ đếm, đếm mỗi phút
@@ -34,6 +34,9 @@ function App() {
         <Route path='/mnemonic/deleted-page' element = {<DeletedPage/>} />
         <Route path='/mnemonic/chatgpt' element = {<ChatPage/>}/>
       </Routes>
+
+    
+
     </div>
   );
 }

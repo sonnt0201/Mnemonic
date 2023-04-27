@@ -10,7 +10,7 @@
 .user-message {
     text-align: right;
     margin: 1rem 2% 1rem auto;
-    background-color: #645CBB;
+    background-image: linear-gradient(to right bottom, #8EA7E9, #E5E0FF);
 }
 
 .assistant-message {

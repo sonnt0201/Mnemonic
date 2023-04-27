@@ -1,9 +1,10 @@
-import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import {Transition } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom";
+import "./MainNavbar.css";
 
 const PageEnum = Object.freeze({
   HOME: "/mnemonic",
@@ -19,80 +20,64 @@ function MainNavbar() {
   const pageName = (pathname) => {
     switch (pathname) {
       case PageEnum.HOME:
-        return "Trang Chủ"
+        return "Trang Chủ";
       case PageEnum.DONE:
-        return "Hoàn Thành"
+        return "Hoàn Thành";
       case PageEnum.OVERDUE:
-        return "Quá Hạn"
+        return "Quá Hạn";
       case PageEnum.DELETED:
-        return "Thùng Rác"
+        return "Thùng Rác";
       case PageEnum.PENDING:
-        return "Chưa Xong"
+        return "Chưa Xong";
       case PageEnum.CHATGPT:
-        return "Chat"
+        return "Chat";
       default:
-        return ""
+        return "";
     }
-  }
+  };
   return (
-    <Navbar bg="light" expand="lg" sticky="top">
-      <Container >
-
-        
-        <Navbar.Brand className="app-name" style={{
-          padding: "0",
-          width: "10%",
-          
-        }}>
+    <Navbar expand="lg" sticky="top" className="nav-bar">
+      <Container>
+        <Navbar.Brand className="app-name">
           <Link to="/mnemonic">MNEMONIC</Link>
         </Navbar.Brand>
-        
-        
-       
-        <Nav className="page-name mx-auto" style={{
-          padding: "0",
-          width: "60%",
+
+        <Nav
+          className="page-name"
           
-        }}>
-          <h2 className="page-name mx-auto">
-            {
-              pageName(location.pathname)
-            }
-          </h2>
+        >
+          <h2>{pageName(location.pathname)}</h2>
         </Nav>
-       
 
-        <Navbar.Toggle className="justify-content-end" aria-controls="basic-navbar-nav" />
-
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" >
-
-
-          <Nav className="justify-content-end" >
+        <Navbar.Toggle
+          className="justify-content-end"
+          aria-controls="basic-navbar-nav"
+        />
+        
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end navbar-collapse">
          
-            <Nav.Link>
-              <Link to="/mnemonic">Trang chủ</Link>
-            </Nav.Link>
+            {/* <Nav.Link>
+              <Link to="/mnemonic/chatgpt"> Chat </Link>
+            </Nav.Link> */}
             <Nav.Link>
               <Link to="/mnemonic/done-page">Hoàn thành</Link>
             </Nav.Link>
             <Nav.Link>
-              <Link to="/mnemonic/chatgpt"> Chat </Link>
+              <Link to="/mnemonic/pending-page">Còn hạn</Link>
             </Nav.Link>
 
-            <NavDropdown title="Khác" id="basic-nav-dropdown">
-              <Nav.Link>
-                <Link to="/mnemonic/pending-page">Còn hạn</Link>
-              </Nav.Link>
-
-              <NavDropdown.Item>
-                <Link to="/mnemonic/overdue-page">Quá hạn</Link>
-              </NavDropdown.Item>
-
+            <Nav.Link>
+              <Link to="/mnemonic/overdue-page">Quá hạn</Link>
+            </Nav.Link>
+            <NavDropdown
+              title="Khác"
+              id="basic-nav-dropdown"
+              className="drop-down"
+            >
               <NavDropdown.Item>Cài đặt</NavDropdown.Item>
 
               <NavDropdown.Item>
                 <Link to="/mnemonic/deleted-page">Thùng rác</Link>
-
               </NavDropdown.Item>
 
               {/* <NavDropdown.Item href="#action/3.2">
@@ -102,7 +87,7 @@ function MainNavbar() {
               <NavDropdown.Divider />
               <NavDropdown.Item>Thông tin</NavDropdown.Item>
             </NavDropdown>
-          </Nav>
+       
         </Navbar.Collapse>
       </Container>
     </Navbar>

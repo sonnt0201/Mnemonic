@@ -1,0 +1,65 @@
+.nav-bar  {
+    border-radius: 1rem;
+    background-image: linear-gradient(to bottom right, #9BA17B88, #CFB99788, #F4EAD588); 
+    color: black;
+    /* background-image: linear-gradient(to bottom right, #CF0DC7, #6563E2, #08C6CE); */
+    /* color: white; */
+    font-weight: bold;
+    margin: 0.2rem;
+}
+
+.nav-bar * {
+    /* font-size: 1rem; */
+    /* font-size:calc(1.2rem +  0.5vw); */
+    /* color: white; */
+    color: #61764B;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-bar * :hover {
+    color: #9BA17B;
+
+}
+.app-name {
+    padding: 0;
+    width: 10%;
+    font-size: 0.8rem;
+}
+
+.navbar-collapse * {
+    font-size: 0.8rem;
+}
+
+.drop-down *{
+    color: #50577A;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .app-name {
+       
+        font-size: 1.5rem;
+    }
+
+    .page-name { 
+        margin: auto;
+        margin-left: 30%;
+    }
+
+   
+    .navbar-collapse{
+        max-height: inherit;
+        padding: 0;
+        flex-grow: 0;
+    }
+
+    .navbar-collapse * {
+        margin : 0.3rem;
+        font-size: 1rem;
+    }
+
+   
+}

@@ -1,10 +1,13 @@
-const OpenAI_KEY = "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";
+// const OPENAI_APIKEY="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"
+// require('dotenv').config();
+// const dotenv = require('dotenv');
 class OpenAI {
   constructor() {
     if (!OpenAI.instance) {
       const { Configuration, OpenAIApi } = require("openai");
+      // dotenv.config();
       const configuration = new Configuration({
-        apiKey: OpenAI_KEY,
+        // apiKey: process.env.REACT_APP_OPENAI_APIKEY,
       });
 
       this.openAI = new OpenAIApi(configuration);
