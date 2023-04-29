@@ -27,17 +27,14 @@
     font-size: 0.8rem;
 }
 
-.navbar-collapse * {
-    font-size: 0.8rem;
+.offcanvas {
+    width: 40% !important;
+    transition-duration: 0.1s !important;
 }
 
-.drop-down *{
-    color: #50577A;
-    text-align: center;
-    font-weight: bold;
-    font-size: 0.8rem;
+.quick-options {
+    display: none;
 }
-
 @media only screen and (min-width: 768px) {
     .app-name {
        
@@ -49,17 +46,12 @@
         margin-left: 30%;
     }
 
-   
-    .navbar-collapse{
-        max-height: inherit;
-        padding: 0;
-        flex-grow: 0;
+    .quick-options {
+        display: inherit;
     }
 
-    .navbar-collapse * {
-        margin : 0.3rem;
-        font-size: 1rem;
+    .offcanvas {
+        width: 20% !important;
     }
-
-   
+    
 }

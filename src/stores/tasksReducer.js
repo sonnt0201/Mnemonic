@@ -1,12 +1,15 @@
 import { saveToLocalStorage, StorageEnum } from "../utils";
 import ActionEnum from "./ActionEnum";
 import { Task } from "./Task";
+import { useNoti } from "../notification";
 export const tasksReducer = (tasks, action) => {
   // tasks list sau khi thay đổi
+  
   let newTasks = tasks;
   switch (action.type) {
     case ActionEnum.ADD_TASK: // payload is object
       newTasks = [action.payload, ...tasks];
+
       break;
     case ActionEnum.TOGGLE_DELETED: // payload is id
       newTasks = tasks.map((task) => {
@@ -33,21 +36,28 @@ export const tasksReducer = (tasks, action) => {
         return new Task({ ...task, isDone: !task.isDone });
       });
       break;
+    
+      // thay đổi 1 task
     case ActionEnum.CHANGE_TASK: // payload is an object
       newTasks = tasks.map((task) => {
         if (task.id !== action.payload.id) return task;
         return action.payload;
       });
       break;
+
     // check quá hạn
     case ActionEnum.COUNT_DAYS_LEFT:
-      // set count day chạy trên tất cả các tasks
+      // set UPDATE  chạy trên tất cả các tasks
       // payload = now
 
       newTasks = tasks.map((task) => {
         task.update();
         return task;
       });
+      break;
+    
+    case ActionEnum.EMPTY_BIN:
+      newTasks = tasks.filter(task => !task.isDeleted);
       break;
     default:
       newTasks = tasks;

@@ -46,6 +46,9 @@
     scale: 0.8;
 }
 
+.focused {
+    box-shadow: 120px 80px 40px 20px rgb(172, 231, 231);
+}
 @media only screen and (min-width: 768px) {
     
     .accordion * {

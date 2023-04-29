@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./InputAccordion.css";
 import { useTasks, ActionEnum } from "../stores";
 import { Task } from "../stores";
+import { NotiTypes, useNoti } from "../notification";
 export const InputAccordion = ({ inputVal, setInputVal }) => {
 
   const [activeKey, setActiveKey] = useState("1");
@@ -12,24 +13,48 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
   const [deadline, setDeadline] = useState("");
   const [note, setNote] = useState("");
   const [tasks, dispatchTasks] = useTasks();
-
+  const [noti, dispatchNoti] = useNoti();
   const handleSubmit = (e) => {
     
     let id, type;
-
+    const now = new Date();
+    // lấy id và tên
     if (inputVal === -1 && name) {
       id = tasks.length + 1;
       type = ActionEnum.ADD_TASK;
+     
+       // hiện  thông báo
+    dispatchNoti({
+      type: NotiTypes.ADD,
+      payload: {
+        content: `Đã thêm một công việc mới: ${name.toUpperCase()}`, 
+        link: '/mnemonic',
+        time: now
+      }
+    })
+
     } else {
       id = inputVal;
       type = ActionEnum.CHANGE_TASK;
+
+      // Hiện thông báo
+      dispatchNoti({
+        type: NotiTypes.ADD,
+        payload:  {
+          content: `Sửa thành công: ${name.toUpperCase()}`, 
+          link: '/mnemonic',
+          time: now
+        }
+  
+      })
     }
 
+    // thêm task với dispatch
     dispatchTasks({
       type: type,
       payload: new Task({
         id: id,
-        name: name,
+        name: name.toUpperCase(),
         deadline: deadline,
         note: note,
         isDone: false,
@@ -38,14 +63,21 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
       }),
     });
 
+   
+    // đưa các giá trị input về mặc định
     setName("");
     setDeadline("");
     setNote("");
     setInputVal(-1);
+
+
   };
 
+  // khi nhấn vào nút chỉnh sửa
   useEffect(() => {
-    if (inputVal !== -1) setActiveKey("0");
+    // e.target.className += " .focused"
+    if (inputVal !== -1) window.scrollTo(0, 0)
+    // setActiveKey("0");
   }, [inputVal]);
 
   return (
@@ -63,6 +95,8 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                 return "1";
               });
             }}
+
+            
             className="input-header"
           >
             <Stack direction="horizontal" style={{ whiteSpace: "nowrap", }}>
@@ -76,7 +110,23 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
+                  
+              }}
+
+                onKeyUp={e => {
+                  // chặn đóng mở accordion khi ấn Space
+                  if (e.key ===" ") {
+                    e.preventDefault();
+                    // setActiveKey(activeKey => activeKey === "1" ? "0" : "1")
+                  };
+
+                  // enter để submit
+                  if (e.key === "Enter") {
+                    e.target.value.toUpperCase();
+                    handleSubmit();
+                  }
                 }}
+
                 onBlur={(e) => setName(e.target.value.toUpperCase())}
                 required
               />

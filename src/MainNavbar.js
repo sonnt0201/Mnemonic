@@ -1,8 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import {Transition } from "react-bootstrap"
+import { Row, Transition, Stack, Offcanvas } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import "./MainNavbar.css";
 
@@ -36,61 +35,61 @@ function MainNavbar() {
     }
   };
   return (
-    <Navbar expand="lg" sticky="top" className="nav-bar">
-      <Container>
-        <Navbar.Brand className="app-name">
-          <Link to="/mnemonic">MNEMONIC</Link>
-        </Navbar.Brand>
+    <>
+      <Navbar expand="false" sticky="top" className="nav-bar">
+        <Container>
+          <Navbar.Brand className="app-name">
+            <Link to="/mnemonic">MNEMONIC</Link>
+          </Navbar.Brand>
 
-        <Nav
-          className="page-name"
-          
-        >
-          <h2>{pageName(location.pathname)}</h2>
-        </Nav>
+          <Nav className="page-name">
+            <h2>{pageName(location.pathname)}</h2>
+          </Nav>
 
-        <Navbar.Toggle
-          className="justify-content-end"
-          aria-controls="basic-navbar-nav"
-        />
-        
-        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end navbar-collapse">
-         
-            {/* <Nav.Link>
-              <Link to="/mnemonic/chatgpt"> Chat </Link>
-            </Nav.Link> */}
-            <Nav.Link>
-              <Link to="/mnemonic/done-page">Hoàn thành</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/mnemonic/pending-page">Còn hạn</Link>
-            </Nav.Link>
+          <Stack direction="horizontal" className="quick-options">
+            <Link className="me-3" to="/mnemonic/done-page">
+              Hoàn thành
+            </Link>
 
-            <Nav.Link>
-              <Link to="/mnemonic/overdue-page">Quá hạn</Link>
-            </Nav.Link>
-            <NavDropdown
-              title="Khác"
-              id="basic-nav-dropdown"
-              className="drop-down"
-            >
-              <NavDropdown.Item>Cài đặt</NavDropdown.Item>
+            <Link className="me-3" to="/mnemonic/pending-page">
+              Còn hạn
+            </Link>
 
-              <NavDropdown.Item>
-                <Link to="/mnemonic/deleted-page">Thùng rác</Link>
-              </NavDropdown.Item>
+            <Link className="me-3" to="/mnemonic/overdue-page">
+              Quá hạn
+            </Link>
+          </Stack>
 
-              {/* <NavDropdown.Item href="#action/3.2">
-                Chế độ tối
-              </NavDropdown.Item> */}
+          <Navbar.Toggle
+            className="justify-content-start me-2"
+            aria-controls="basic-navbar-nav"
+          />
 
-              <NavDropdown.Divider />
-              <NavDropdown.Item>Thông tin</NavDropdown.Item>
-            </NavDropdown>
-       
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <Navbar.Offcanvas
+            id="basic-navbar-nav"
+            className="offcanvas"
+            // scroll = {false}
+            // backdrop = {false}
+          >
+            <Offcanvas.Body>
+              <Nav>
+                <Link className="me-3" to="/mnemonic/done-page">
+                  Hoàn thành
+                </Link>
+
+                <Link className="me-3" to="/mnemonic/pending-page">
+                  Còn hạn
+                </Link>
+
+                <Link className="me-3" to="/mnemonic/overdue-page">
+                  Quá hạn
+                </Link>
+              </Nav>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 

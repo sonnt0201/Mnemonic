@@ -3,8 +3,8 @@ import {  Card, Stack, Collapse, Col } from "react-bootstrap";
 
 import { useTasks, ActionEnum } from "../stores";
 
-import Restore from "../assets/restore.svg";
-import Remove from "../assets/permanent-remove.svg"
+import Restore from "../assets/icons/restore.svg";
+import Remove from "../assets/icons/permanent-remove.svg"
 import { useState } from "react";
 import { formatTime } from "../utils";
 import "./DeletedItem.css"

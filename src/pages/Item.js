@@ -1,11 +1,15 @@
 import { formatTime } from "../utils";
 import { Form, Card, Col, Stack, Row } from "react-bootstrap";
 import { useTasks, ActionEnum } from "../stores";
-import Bin from "../assets/bin.svg";
-import Change from "../assets/change.svg";
+import Bin from "../assets/icons/bin.svg";
+import Change from "../assets/icons/change.svg";
+
+import { useNoti, NotiTypes } from "../notification";
 import "./Item.css";
+
 export const Item = ({ task, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
+  const [, dispatchNoti] = useNoti();
   const header = (task) => {
     // return task.countDaysLeft;
     if (task.isDone) return "Đã xong";
@@ -67,10 +71,25 @@ export const Item = ({ task, setInputVal }) => {
                 className="icon bin-button"
                 src={Bin}
                 onClick={(e) => {
+
+                  // dispatch xóa
                   dispatchTasks({
                     type: ActionEnum.TOGGLE_DELETED,
                     payload: task.id,
                   });
+
+                  // chạy thông báo
+                  dispatchNoti({
+                    type: NotiTypes.ADD,
+                    payload: {
+                      content: (<p>
+                        Đã xóa <strong>{' ' + task.name}</strong>
+                      </p>),
+                      time: new Date(),
+                      link: '/mnemonic/deleted-page'
+                    }
+                  })
+
                 }}
                 alt="xoas"
               />
