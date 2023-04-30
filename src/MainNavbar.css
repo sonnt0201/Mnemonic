@@ -28,12 +28,52 @@
 }
 
 .offcanvas {
-    width: 40% !important;
+    width: 60% !important;
     transition-duration: 0.1s !important;
+    /* background-image: linear-gradient(to right, #FFFBEB, #ECF9FF); */
+    border-width: 0 !important;
+    /* border-radius: 0.5rem; */
+    /* margin: 0.2rem; */
 }
 
 .quick-options {
     display: none;
+}
+
+.offcanvas-header * {
+    font-weight: bolder;
+}
+
+.offcanvas-body{
+    padding: 0 !important;
+}
+.offcanvas-body *, .offcanvas-body *:active {
+    
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #61764B;
+    font-weight: bold;
+
+}
+
+.offcanvas-body *:hover {
+    
+    color: #3a561d;
+    
+
+}
+
+.offcanvas-icon {
+    width: 1.5rem;
+}
+
+.is-active {
+    /* transition: background-image 0.5s !important; */
+    background-image: linear-gradient(to right, #e0dcce, #c8c7c2); 
+    /* background-image: linear-gradient(to right, #C8B6A6, #F1DEC9); */
+    /* border-radius: 0.5rem; */
+    padding: 0.3rem;
+    
 }
 @media only screen and (min-width: 768px) {
     .app-name {
@@ -54,4 +94,10 @@
         width: 20% !important;
     }
     
+    .offcanvas-body * {
+        
+        font-size: 1rem;
+        
+    
+    }
 }

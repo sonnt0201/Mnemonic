@@ -1,8 +1,19 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Row, Transition, Stack, Offcanvas } from "react-bootstrap";
+import { Row, Transition, Stack, Offcanvas, Image } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+
+import {
+  Home,
+  Pending,
+  Done,
+  Infor,
+  Overdue,
+  Setting,
+  BinBlack,
+} from "./assets/icons";
+
 import "./MainNavbar.css";
 
 const PageEnum = Object.freeze({
@@ -68,21 +79,118 @@ function MainNavbar() {
           <Navbar.Offcanvas
             id="basic-navbar-nav"
             className="offcanvas"
-            // scroll = {false}
+
             // backdrop = {false}
           >
-            <Offcanvas.Body>
+            <Offcanvas.Header className="offcanvas-header" closeButton>
+              <Offcanvas.Title>MNEMONIC</Offcanvas.Title>
+            </Offcanvas.Header>
+
+            <Offcanvas.Body className="offcanvas-body">
               <Nav>
-                <Link className="me-3" to="/mnemonic/done-page">
+                {/* is-active là className được thêm vào khi 1 page active => hiện css cho page active */}
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname === PageEnum.HOME
+                      ? "is-active"
+                      : "")
+                  }
+                  to="/mnemonic"
+                >
+                  <img
+                    src={Home.default}
+                    alt="home"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
+                  Trang chủ
+                </Link>
+
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname === PageEnum.DONE
+                      ? "is-active"
+                      : "")
+                  }
+                  to="/mnemonic/done-page"
+                >
+                  <img
+                    src={Done.default}
+                    alt="done"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
                   Hoàn thành
                 </Link>
 
-                <Link className="me-3" to="/mnemonic/pending-page">
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname ===
+                    PageEnum.PENDING
+                      ? "is-active"
+                      : "")
+                  }
+                  to="/mnemonic/pending-page"
+                >
+                  <img
+                    src={Pending.default}
+                    alt="pending"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
                   Còn hạn
                 </Link>
 
-                <Link className="me-3" to="/mnemonic/overdue-page">
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname ===
+                    PageEnum.OVERDUE
+                      ? "is-active"
+                      : "")
+                  }
+                  to="/mnemonic/overdue-page"
+                >
+                  <img
+                    src={Overdue.default}
+                    alt="overdue"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
                   Quá hạn
+                </Link>
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname === PageEnum.DELETED
+                      ? "is-active"
+                      : "")
+                  }
+                  to={"/mnemonic/deleted-page"}
+                >
+                  <img
+                    src={BinBlack.default}
+                    alt="home"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
+                  Thùng rác
+                </Link>
+                <Link
+                  className={
+                    "mb-4 my-auto " + (location.pathname ===
+                    PageEnum.SETTING
+                      ? "is-active"
+                      : "")
+                  }
+                >
+                  <img
+                    src={Setting.default}
+                    alt="home"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
+                  Cài đặt
+                </Link>
+                <Link className="mb-4 my-auto">
+                  <img
+                    src={Infor.default}
+                    alt="home"
+                    className="offcanvas-icon me-3 ms-3 ms-2"
+                  />
+                  Thông tin
                 </Link>
               </Nav>
             </Offcanvas.Body>
