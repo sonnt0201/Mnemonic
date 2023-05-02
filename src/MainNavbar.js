@@ -68,7 +68,7 @@ function MainNavbar() {
 
           <Nav className="page-name">
             <h2>
-              {pages.find((page) => page.linkTo === location.pathname).pageName}
+              {/* {pages.find((page) => page.linkTo === location.pathname).pageName  ? } */}
             </h2>
           </Nav>
 
@@ -121,100 +121,7 @@ function MainNavbar() {
                     {page.pageName}
                   </Link>)
                 }
-                {/* <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.HOME ? "is-active" : "")
-                  }
-                  to="/mnemonic"
-                >
-                  <img
-                    src={Home.default}
-                    alt="home"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Trang chủ
-                </Link>
-
-                <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.DONE ? "is-active" : "")
-                  }
-                  to="/mnemonic/done-page"
-                >
-                  <img
-                    src={Done.default}
-                    alt="done"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Hoàn thành
-                </Link>
-
-                <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.PENDING ? "is-active" : "")
-                  }
-                  to="/mnemonic/pending-page"
-                >
-                  <img
-                    src={Pending.default}
-                    alt="pending"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Còn hạn
-                </Link>
-
-                <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.OVERDUE ? "is-active" : "")
-                  }
-                  to="/mnemonic/overdue-page"
-                >
-                  <img
-                    src={Overdue.default}
-                    alt="overdue"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Quá hạn
-                </Link>
-                <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.DELETED ? "is-active" : "")
-                  }
-                  to={"/mnemonic/deleted-page"}
-                >
-                  <img
-                    src={BinBlack.default}
-                    alt="home"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Thùng rác
-                </Link>
-                <Link
-                  className={
-                    "mb-4 my-auto " +
-                    (location.pathname === PageEnum.SETTING ? "is-active" : "")
-                  }
-                >
-                  <img
-                    src={Setting.default}
-                    alt="home"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Cài đặt
-                </Link>
-                <Link className="mb-4 my-auto">
-                  <img
-                    src={Infor.default}
-                    alt="home"
-                    className="offcanvas-icon me-3 ms-3 ms-2"
-                  />
-                  Thông tin
-                </Link> */}
+             
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
