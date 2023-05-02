@@ -11,8 +11,8 @@ import {
   Infor,
   Overdue,
   Setting,
-  BinBlack,
-  Bin,
+  BinBlack
+ 
 } from "./assets/icons";
 
 import "./MainNavbar.css";
@@ -21,7 +21,7 @@ import "./MainNavbar.css";
 function MainNavbar() {
   const pages = ([
     {
-      linkTo: "/mnemonic",
+      linkTo: "/mnemonic/",
       pageName: "Trang Chủ",
       icon: Home
     },
@@ -59,7 +59,7 @@ function MainNavbar() {
   const location = useLocation();
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
-    console.log(currentPage);
+    console.log(location);
     if (currentPage) return currentPage.pageName;
     console.log("currentPage error !!!")
     return ""
@@ -69,7 +69,7 @@ function MainNavbar() {
       <Navbar expand="false" sticky="top" className="nav-bar">
         <Container>
           <Navbar.Brand className="app-name">
-            <Link to="/mnemonic">MNEMONIC</Link>
+            <Link to="/mnemonic/">MNEMONIC</Link>
           </Navbar.Brand>
 
           <Nav className="page-name">

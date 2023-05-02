@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <MainNavbar />
       <Routes>
-        <Route path="/mnemonic" element={<HomePage />} />
+        <Route path="/mnemonic/" element={<HomePage />} />
         <Route path="/mnemonic/done-page" element={<DonePage />} />
         <Route path="/mnemonic/pending-page" element={<PendingPage />} />
         <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
