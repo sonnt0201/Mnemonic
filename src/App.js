@@ -14,10 +14,9 @@ import { useTasks, ActionEnum } from "./stores";
 import { ToastNoti } from "./ToastNoti";
 import { useNoti, NotiTypes } from "./notification";
 
-const TIME = 1000; // thời gian giữa các lần update countDaysLeft
+const TIME = 60*1000; // thời gian giữa các lần update countDaysLeft
 function App() {
   const [tasks, dispatchTasks] = useTasks();
-  const [noti, dispatchNoti] = useNoti();
 
   // useEffect để gọi bộ đếm, đếm mỗi phút
   useEffect(() => {
