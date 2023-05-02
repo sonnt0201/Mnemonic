@@ -20,18 +20,25 @@ export const ChatPage = () => {
 
     //thêm mess vừa gửi vào array
     const newMessages = [...messages, newMessage];
+
     setMessages(newMessages);
 
-    // gọi api
-    const responseMessage = await openAI.getAnswerFor([
-      ...messages,
-      newMessage,
-    ]);
+    try {
+      // gọi api
+      const responseMessage = await openAI.getAnswerFor([
+        ...messages,
+        newMessage,
+      ]);
 
-    // thêm mess nhận về vào array
-    newMessages.push(responseMessage);
-    setMessages(newMessages);
-    setIsLoading(false);
+      // thêm mess nhận về vào array
+      newMessages.push(responseMessage);
+      setMessages(newMessages);
+      setIsLoading(false);
+    } catch (error) {
+      alert(error);
+      setIsLoading(false);
+    }
+    
   };
 
   return (
@@ -82,8 +89,7 @@ export const ChatPage = () => {
             />
           </div>
         )}
-        <Stack direction = "horizontal" gap = {3}>
-
+        <Stack direction="horizontal" gap={3}>
           <Form.Control
             className="chat-input"
             as="textarea"
@@ -97,18 +103,22 @@ export const ChatPage = () => {
                 e.preventDefault();
                 e.target.blur();
                 setText("");
-                handleSendMessage();
+                if (text) handleSendMessage();
               }
             }}
           />
 
-          <Button className="submit-button" variant = "success" style={{
-            padding: "0.8rem",
-            fontWeight: "bold",
-            // backgroundColor:"#645CBB",
-            borderWidth: "0"
-            // fontSize: "1.2rem"
-          }}>
+          <Button
+            className="submit-button"
+            variant="success"
+            style={{
+              padding: "0.8rem",
+              fontWeight: "bold",
+              // backgroundColor:"#645CBB",
+              borderWidth: "0",
+              // fontSize: "1.2rem"
+            }}
+          >
             Gửi
           </Button>
         </Stack>

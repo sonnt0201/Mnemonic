@@ -3,10 +3,12 @@ import {  Card, Stack, Collapse, Col } from "react-bootstrap";
 
 import { useTasks, ActionEnum } from "../stores";
 
-import Restore from "../assets/restore.svg";
-import Remove from "../assets/permanent-remove.svg"
+import Restore from "../assets/icons/restore.svg";
+import Remove from "../assets/icons/permanent-remove.svg"
 import { useState } from "react";
 import { formatTime } from "../utils";
+import "./DeletedItem.css"
+
 export const DeletedItem = ({ task }) => {
 
   const [, dispatchTasks] = useTasks();
@@ -19,7 +21,7 @@ export const DeletedItem = ({ task }) => {
               <Card className="">
                 <Card.Header>
                   
-                  {formatTime(task.deadline)}
+                  { formatTime(task.deadline) }
                 </Card.Header>
 
                 <Card.Body>
@@ -29,9 +31,9 @@ export const DeletedItem = ({ task }) => {
 
                   <Stack direction="horizontal" gap={3} className="mx-auto justify-content-center">
                     <img
-                      className="bin-button"
+                      className="icon restore-button"
                       src={Restore}
-                      style={{ width: "10%", margin: "0" }}
+                     
                       onClick={(e) => {
                         dispatchTasks({
                           type: ActionEnum.TOGGLE_DELETED,
@@ -52,9 +54,9 @@ export const DeletedItem = ({ task }) => {
                       alt="xoas"
                     />
                     <img
-                      className="remove-button"
+                      className="icon remove-button"
                       src={Remove}
-                      style={{ width: "10%", margin: "0" }}
+                     
                       onClick={(e) => {
                         dispatchTasks({
                           type: ActionEnum.REMOVE_TASK,
