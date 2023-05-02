@@ -8,5 +8,5 @@ export * as Infor from "./infor.svg";
 export * as Change from "./change.svg";
 export * as Bin from "./bin.svg"
 export * as BinBlack from "./bin-black.svg"
-
+export * as Chat from "./chat-page.svg"
 

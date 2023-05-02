@@ -11,7 +11,8 @@ import {
   Infor,
   Overdue,
   Setting,
-  BinBlack
+  BinBlack,
+  Chat
  
 } from "./assets/icons";
 
@@ -45,11 +46,11 @@ function MainNavbar() {
       pageName: "Thùng Rác",
       icon: BinBlack
     },
-    // {
-    //   linkTo: "/mnemonic/chatgpt",
-    //   pageName: "Chat",
-    //   icon: ""
-    // },
+    {
+      linkTo: "/mnemonic/chatgpt",
+      pageName: "Chat",
+      icon: Chat
+    },
     // {
     //   linkTo: "/mnemonic/setting",
     //   pageName: "Cài Đặt",
@@ -90,6 +91,7 @@ function MainNavbar() {
             <Link className="me-3" to="/mnemonic/overdue-page">
               Quá hạn
             </Link>
+           
           </Stack>
 
           <Navbar.Toggle
@@ -110,6 +112,7 @@ function MainNavbar() {
             <Offcanvas.Body className="offcanvas-body">
               <Nav>
                 {/* is-active là className được thêm vào khi 1 page active => hiện css cho page active */}
+                {/* map các pages */}
                 {
                   pages.map( page => 
                   <Link
