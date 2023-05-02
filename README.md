@@ -29,5 +29,5 @@ If you want to contribute to this project, follow these steps:
 This project is licensed under the MIT License. See the LICENSE file for more information.
 
 ## Credits and Attribution
-### All by Son Nguyen Thai
-### 5/2023
+All by Son Nguyen Thai
+May 2023
