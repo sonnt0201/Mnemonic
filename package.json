@@ -1,7 +1,7 @@
 {
   "name": "mnemonic",
   "version": "0.1.0",
-  "homepage": "https://sonnt0201.github.io/mnemonic/",
+  "homepage": "https://sonnt0201.github.io/mnemonic",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
