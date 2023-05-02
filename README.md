@@ -1,13 +1,13 @@
 # MNEMONIC
 
-MNEMONIC is a simple to-do list application that allows users to create to-do flashcards. Users can create a new flashcard, or edit, delete an exist one, manage which tasks are completed, overdue or still pending.
+MNEMONIC is a simple to-do list application that allows users to create to-do flashcards for their tasks. Users can create new flashcards, or edit, delete  existing one, manage which tasks are completed, overdue or still pending.
 
 ## Features
 
-* Create a flashcard
-* Edit or delete an exist one
-* Mark the completed tasks
-* Auto-calculate the number of days to due date
+* Create flashcards
+* Edit or delete existing flashcards
+* Mark completed tasks
+* Automatically calculate the number of days until the due date
 * Notify which tasks are close to the due date
 * Quick chat with ChatGPT
 
@@ -25,10 +25,6 @@ If you want to contribute to this project, follow these steps:
 4. Push to the branch (git push origin feature/new-feature)
 5. Create a new Pull Request
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
 ## Credits and Attribution
-All by Son Nguyen Thai
-
+All by Son Nguyen Thai <br />
 May 2023
