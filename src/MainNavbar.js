@@ -12,39 +12,52 @@ import {
   Overdue,
   Setting,
   BinBlack,
+  Bin,
 } from "./assets/icons";
 
 import "./MainNavbar.css";
 
-const PageEnum = Object.freeze({
-  HOME: "/mnemonic",
-  DONE: "/mnemonic/done-page",
-  PENDING: "/mnemonic/pending-page",
-  OVERDUE: "/mnemonic/overdue-page",
-  DELETED: "/mnemonic/deleted-page",
-  CHATGPT: "/mnemonic/chatgpt",
-  SETTING: "Cài Đặt",
-});
+
 function MainNavbar() {
+  const pages = ([
+    {
+      linkTo: "/mnemonic",
+      pageName: "Trang Chủ",
+      icon: Home
+    },
+    {
+      linkTo: "/mnemonic/done-page",
+      pageName: "Hoàn Thành",
+      icon: Done
+    },
+    {
+      linkTo: "/mnemonic/pending-page",
+      pageName: "Chưa Xong",
+      icon: Pending
+    },
+    {
+      linkTo: "/mnemonic/overdue-page",
+      pageName: "Quá Hạn",
+      icon: Overdue
+    },
+    {
+      linkTo: "/mnemonic/deleted-page",
+      pageName: "Thùng Rác",
+      icon: BinBlack
+    },
+    // {
+    //   linkTo: "/mnemonic/chatgpt",
+    //   pageName: "Chat",
+    //   icon: ""
+    // },
+    // {
+    //   linkTo: "/mnemonic/setting",
+    //   pageName: "Cài Đặt",
+    //   icon: ""
+    // },
+  ]);
   const location = useLocation();
-  const pageName = (pathname) => {
-    switch (pathname) {
-      case PageEnum.HOME:
-        return "Trang Chủ";
-      case PageEnum.DONE:
-        return "Hoàn Thành";
-      case PageEnum.OVERDUE:
-        return "Quá Hạn";
-      case PageEnum.DELETED:
-        return "Thùng Rác";
-      case PageEnum.PENDING:
-        return "Chưa Xong";
-      case PageEnum.CHATGPT:
-        return "Chat";
-      default:
-        return "";
-    }
-  };
+
   return (
     <>
       <Navbar expand="false" sticky="top" className="nav-bar">
@@ -54,7 +67,9 @@ function MainNavbar() {
           </Navbar.Brand>
 
           <Nav className="page-name">
-            <h2>{pageName(location.pathname)}</h2>
+            <h2>
+              {pages.find((page) => page.linkTo === location.pathname).pageName}
+            </h2>
           </Nav>
 
           <Stack direction="horizontal" className="quick-options">
@@ -89,11 +104,27 @@ function MainNavbar() {
             <Offcanvas.Body className="offcanvas-body">
               <Nav>
                 {/* is-active là className được thêm vào khi 1 page active => hiện css cho page active */}
-                <Link
+                {
+                  pages.map( page => 
+                  <Link
+                    className={
+                      " my-auto offcanvas-link " +
+                      (location.pathname === page.linkTo ? "is-active" : "")
+                    }
+                    to={page.linkTo}
+                  >
+                    <img
+                      src={page.icon.default}
+                      alt="home"
+                      className="offcanvas-icon me-3 ms-3"
+                    />
+                    {page.pageName}
+                  </Link>)
+                }
+                {/* <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname === PageEnum.HOME
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.HOME ? "is-active" : "")
                   }
                   to="/mnemonic"
                 >
@@ -107,9 +138,8 @@ function MainNavbar() {
 
                 <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname === PageEnum.DONE
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.DONE ? "is-active" : "")
                   }
                   to="/mnemonic/done-page"
                 >
@@ -123,10 +153,8 @@ function MainNavbar() {
 
                 <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname ===
-                    PageEnum.PENDING
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.PENDING ? "is-active" : "")
                   }
                   to="/mnemonic/pending-page"
                 >
@@ -140,10 +168,8 @@ function MainNavbar() {
 
                 <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname ===
-                    PageEnum.OVERDUE
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.OVERDUE ? "is-active" : "")
                   }
                   to="/mnemonic/overdue-page"
                 >
@@ -156,9 +182,8 @@ function MainNavbar() {
                 </Link>
                 <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname === PageEnum.DELETED
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.DELETED ? "is-active" : "")
                   }
                   to={"/mnemonic/deleted-page"}
                 >
@@ -171,10 +196,8 @@ function MainNavbar() {
                 </Link>
                 <Link
                   className={
-                    "mb-4 my-auto " + (location.pathname ===
-                    PageEnum.SETTING
-                      ? "is-active"
-                      : "")
+                    "mb-4 my-auto " +
+                    (location.pathname === PageEnum.SETTING ? "is-active" : "")
                   }
                 >
                   <img
@@ -191,7 +214,7 @@ function MainNavbar() {
                     className="offcanvas-icon me-3 ms-3 ms-2"
                   />
                   Thông tin
-                </Link>
+                </Link> */}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

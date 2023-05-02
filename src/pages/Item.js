@@ -71,7 +71,6 @@ export const Item = ({ task, setInputVal }) => {
                 className="icon bin-button"
                 src={Bin}
                 onClick={(e) => {
-
                   // dispatch xóa
                   dispatchTasks({
                     type: ActionEnum.TOGGLE_DELETED,
@@ -82,14 +81,15 @@ export const Item = ({ task, setInputVal }) => {
                   dispatchNoti({
                     type: NotiTypes.ADD,
                     payload: {
-                      content: (<p>
-                        Đã xóa <strong>{' ' + task.name}</strong>
-                      </p>),
+                      content: (
+                        <p>
+                          Đã xóa <strong>{" " + task.name}</strong>
+                        </p>
+                      ),
                       time: new Date(),
-                      link: '/mnemonic/deleted-page'
-                    }
-                  })
-
+                      link: "/mnemonic/deleted-page",
+                    },
+                  });
                 }}
                 alt="xoas"
               />
@@ -97,7 +97,23 @@ export const Item = ({ task, setInputVal }) => {
                 className="icon change-button"
                 src={Change}
                 onClick={(e) => {
+                  // setInputVal là id của task cần sửa
                   setInputVal(task.id);
+
+                  // chạy thông báo
+                  dispatchNoti({
+                    type: NotiTypes.ADD,
+                    payload: {
+                      content: (
+                        <p>
+                           Đang chỉnh sửa <strong> {task.name}</strong>
+                        </p>
+                      ),
+
+                      time: new Date(),
+                      link: "/mnemonic",
+                    },
+                  });
                 }}
                 alt="sua"
               />

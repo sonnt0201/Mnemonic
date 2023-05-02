@@ -1,0 +1,30 @@
+.toast-container {
+    margin: 1rem;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    /* animation: glow !important 1s ease-in-out 0 infinite alternate backwards !important; */
+}
+
+.toast-container * {
+    color: black;
+    
+}
+
+.toast-container >  * {
+    background-image: linear-gradient(to bottom right, #e1ccde, #d8d4f8, #9be6f3); 
+    /* background-image: linear-gradient(to bottom right, #E5BDDF, #C6C0FC, #64D0E4); */
+    border: none;
+    
+    
+}
+
+.toast-header {
+    background:none;
+}
+.toast-spinner {
+    background-image: radial-gradient(#469146, #71ad5d, #8cba68);
+    border: none;
+}
+

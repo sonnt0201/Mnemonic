@@ -22,6 +22,9 @@
      transition: background-image 1s ;
  }
 
+ .card >.header {
+    color: #6e93fa;
+ }
  
 
  .overdue>.header{

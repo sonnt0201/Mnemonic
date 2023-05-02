@@ -2,8 +2,11 @@ import { Toast, ToastContainer, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNoti, NotiTypes } from "./notification";
 import { useTasks } from "./stores";
+import "./ToastNoti.css";
+import { Link } from "react-router-dom";
 export const ToastNoti = () => {
   const [show, setShow] = useState(false);
+  
   const [tasks] = useTasks();
   const [noti, dispatchNoti] = useNoti();
 
@@ -16,7 +19,10 @@ export const ToastNoti = () => {
     // tìm các task sắp hết hạn
     const urgencies = tasks.filter(
       (task) =>
-        !task.isDeleted && !task.isDone && task.countDaysLeft > 0 && task.countDaysLeft <= 1
+        !task.isDeleted &&
+        !task.isDone &&
+        task.countDaysLeft > 0 &&
+        task.countDaysLeft <= 1
     );
     if (urgencies.length > 0)
       dispatchNoti({
@@ -40,17 +46,14 @@ export const ToastNoti = () => {
           time: new Date(),
         },
       });
-      
 
-      
-      if (urgencies.length > 0) return ;
+    if (urgencies.length > 0) return;
 
-      //  tìm các task chưa hoàn thành nếu không có task sắp hết hạn
-      const pendingTasks = tasks.filter(
-        (task) =>
-          !task.isDeleted && !task.isDone
-      );
-      if (pendingTasks.length > 0)
+    //  tìm các task chưa hoàn thành nếu không có task sắp hết hạn
+    const pendingTasks = tasks.filter(
+      (task) => !task.isDeleted && !task.isDone
+    );
+    if (pendingTasks.length > 0)
       dispatchNoti({
         type: NotiTypes.ADD,
         payload: {
@@ -73,30 +76,33 @@ export const ToastNoti = () => {
           time: new Date(),
         },
       });
-      
   }, []);
-
 
   return (
     <>
       <ToastContainer
-
+        className="toast-container"
         style={{
-          margin: "1rem",
-          position: "fixed",
-          bottom: 0,
-          right: 0,
+         
         }}
       >
         <Toast
+          className="toast"
           onClose={() => setShow(false)}
           show={show}
-          delay={3000}
-
+          delay={5000}
           autohide
+
+         
         >
-          <Toast.Header>
-          <Spinner  animation="grow" variant="success" size = "sm" className="me-2" />
+          <Toast.Header className="me-2 toast-header">
+            <Spinner
+              className="me-2 toast-spinner"
+              animation="grow"
+              variant="success"
+              size="sm"
+              
+            />
             {/* <img
               src="holder.js/20x20?text=%20"
               className="rounded me-2"
@@ -106,12 +112,13 @@ export const ToastNoti = () => {
             <small>ngay bây giờ</small>
           </Toast.Header>
           <Toast.Body
-            className="justify-content-left"
+            className="justify-content-left toast-body"
             style={{
               textAlign: "left",
             }}
           >
             {noti.length > 0 ? noti[0].content : ""}
+           
           </Toast.Body>
         </Toast>
       </ToastContainer>
