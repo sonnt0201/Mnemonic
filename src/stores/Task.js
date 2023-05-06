@@ -23,7 +23,12 @@ export class Task {
       if (this.deadline) {
         const deadlineTime = new Date(this.deadline).getTime();
         this.countDaysLeft = (deadlineTime - now) / (1000 * 3600 * 24);
-      }
+        return;
+      } 
+
+      // không có deadline
+
+      this.countDaysLeft = 99999;
   }
 }
 
