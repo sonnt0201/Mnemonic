@@ -1,0 +1,1 @@
+export * as WelcomeVid from "./welcome.mp4"
