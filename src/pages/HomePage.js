@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { useTasks } from "../stores";
 import { Item } from "./Item";
@@ -8,12 +8,11 @@ const HomePage = () => {
   const [inputVal, setInputVal] = useState(-1);
   const [tasks] = useTasks();
 
-  const Content = () =>
-    tasks.map((task) => {
-      if (task.isDeleted) return "";
-      return <Item task={task} setInputVal={setInputVal} />;
-    });
-
+  const [content, setContent] = useState([]);
+  useEffect(()=> {
+    setContent(tasks.filter(task => !task.isDeleted));
+    console.log(content)
+  },[tasks])
 
   return (
     <>
@@ -21,10 +20,13 @@ const HomePage = () => {
 
       <Container className="content">
         <Row>
-          {tasks.map((task) => {
-            if (task.isDeleted) return "";
-            return <Item task={task} setInputVal={setInputVal} />;
-          })}
+          {content.map((task) => 
+             <Item task={task} setInputVal={setInputVal} />
+          )}
+
+          {
+          // (content === []) &&
+           <Welcome />}
         </Row>
       </Container>
     </>

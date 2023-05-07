@@ -1,10 +1,19 @@
-
-import { WelcomeVid} from "../assets/videos";
-
+import { WelcomeVid } from "../assets/videos";
+import { useEffect, useRef } from "react";
 export const Welcome = () => {
-    return (
-        <video loop controls={false} autoPlay>
-      <source src={WelcomeVid.default} type="video/mp4" />
-    </video>
-    )
-}
+  const videoRef = useRef(null);
+  useEffect(() => {
+    videoRef.current.play();
+  }, []);
+  return (
+    <video
+      ref={videoRef}
+      src={WelcomeVid.default}
+      type="video/mp4"
+      loop
+      autoPlay={true}
+      muted
+      playsinline 
+    />
+  );
+};

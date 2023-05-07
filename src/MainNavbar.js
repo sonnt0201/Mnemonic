@@ -60,7 +60,6 @@ function MainNavbar() {
   const location = useLocation();
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
-    console.log(location);
     if (currentPage) return currentPage.pageName;
     console.log("currentPage error !!!")
     return ""
