@@ -1,0 +1,11 @@
+
+video {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+.welcome-vid {
+    width: calc(min(90vh, 90vw));
+    margin: 0 auto 1rem;
+   
+}

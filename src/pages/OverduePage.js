@@ -1,23 +1,18 @@
 import { Container, Row } from "react-bootstrap";
-import { Item } from "./Item";
+import { Page } from "./Page";
 import { useTasks } from "../stores";
+import { NoContent } from "../assets/icons";
 const OverduePage = () => {
-  const [tasks] = useTasks();
+  const [tasks,] = useTasks();
 
   return (
-    <>
-      <Container className="content">
-        <Row>
-          {tasks.map(
-            (task) =>
-              !task.isDeleted 
-              && task.countDaysLeft <= 0 
-              && !task.isDone
-              && <Item task={task} />
-          )}
-        </Row>
-      </Container>
-    </>
+    <Page
+    tasks = {tasks.filter(task => 
+      !task.isDeleted && !task.isDone && task.countDaysLeft <= 0)}
+
+    hasInputField={false}
+    noContent={<img src={NoContent.default} />}
+    />
   );
 };
 

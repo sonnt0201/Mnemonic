@@ -5,7 +5,7 @@ import {
   DonePage,
   HomePage,
   OverduePage,
-  PendingPage,
+  OverallPage,
   DeletedPage,
   ChatPage,
 } from "./pages";
@@ -13,6 +13,8 @@ import { useEffect } from "react";
 import { useTasks, ActionEnum } from "./stores";
 import { ToastNoti } from "./ToastNoti";
 import { useNoti, NotiTypes } from "./notification";
+import { DownloadButton } from "./DownloadButton";
+
 
 const TIME = 60*1000; // thời gian giữa các lần update countDaysLeft
 function App() {
@@ -39,13 +41,15 @@ function App() {
       <Routes>
         <Route path="/mnemonic/" element={<HomePage />} />
         <Route path="/mnemonic/done-page" element={<DonePage />} />
-        <Route path="/mnemonic/pending-page" element={<PendingPage />} />
+        <Route path="/mnemonic/overall-page" element={<OverallPage />} />
         <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
         <Route path="/mnemonic/deleted-page" element={<DeletedPage />} />
         <Route path="/mnemonic/chatgpt" element={<ChatPage />} />
       </Routes>
 
       <ToastNoti />
+
+      {/* <DownloadButton/> */}
     </div>
   );
 }

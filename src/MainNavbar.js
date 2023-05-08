@@ -6,7 +6,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import {
   Home,
-  Pending,
+  Overall,
   Done,
   Infor,
   Overdue,
@@ -32,9 +32,9 @@ function MainNavbar() {
       icon: Done
     },
     {
-      linkTo: "/mnemonic/pending-page",
-      pageName: "Chưa Xong",
-      icon: Pending
+      linkTo: "/mnemonic/overall-page",
+      pageName: "Tất Cả",
+      icon: Overall
     },
     {
       linkTo: "/mnemonic/overdue-page",
@@ -61,7 +61,7 @@ function MainNavbar() {
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
     if (currentPage) return currentPage.pageName;
-    console.log("currentPage error !!!")
+    // console.log("currentPage error !!!")
     return ""
   }
   return (

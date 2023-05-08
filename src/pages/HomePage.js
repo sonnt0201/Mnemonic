@@ -4,32 +4,22 @@ import { useTasks } from "../stores";
 import { Item } from "./Item";
 import { InputAccordion } from "./InputAccordion";
 import { Welcome } from "./Welcome";
+import { Page } from "./Page";
+
+// Homepage hiển thị những task chưa xong
+// Homepage kế thừa Page
 const HomePage = () => {
-  const [inputVal, setInputVal] = useState(-1);
   const [tasks] = useTasks();
-
-  const [content, setContent] = useState([]);
-  useEffect(()=> {
-    setContent(tasks.filter(task => !task.isDeleted));
-    console.log(content)
-  },[tasks])
-
   return (
-    <>
-      <InputAccordion inputVal={inputVal} setInputVal={setInputVal} />
+    <Page
+      tasks={tasks.filter(
+        (task) => !task.isDeleted && !task.isDone && task.countDaysLeft > 0
+      )}
 
-      <Container className="content">
-        <Row>
-          {content.map((task) => 
-             <Item task={task} setInputVal={setInputVal} />
-          )}
+      hasInputField
 
-          {
-          // (content === []) &&
-           <Welcome />}
-        </Row>
-      </Container>
-    </>
+      noContent = {<Welcome/>}
+    />
   );
 };
 
