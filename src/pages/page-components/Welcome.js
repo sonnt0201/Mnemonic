@@ -1,4 +1,4 @@
-import { WelcomeVid, WelcomeGif } from "../assets/videos";
+import { WelcomeVid, WelcomeGif } from "../../assets/videos";
 import { useEffect, useRef } from "react";
 import "./Welcome.css"
 //  kiểm tra cho máy safari

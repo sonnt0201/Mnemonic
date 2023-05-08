@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import { Item } from "./Item";
-import { InputAccordion } from "./InputAccordion";
-import { Welcome } from "./Welcome";
+import { Item, InputAccordion } from "./page-components";
 import "./Page.css";
 // tất cả các page khác kế thừa Page Component
 // hasInputField === true => hiện input field để thêm hoặc sửa và ngược lại

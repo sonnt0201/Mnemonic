@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+
 import { Page } from "./Page";
 import { useTasks } from "../stores";
 import { NoContent } from "../assets/icons";
@@ -11,7 +11,7 @@ const OverduePage = () => {
       !task.isDeleted && !task.isDone && task.countDaysLeft <= 0)}
 
     hasInputField={false}
-    noContent={<img src={NoContent.default} />}
+    noContent={<img src={NoContent.default} alt="no-content" />}
     />
   );
 };

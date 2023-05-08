@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+
 import { useTasks } from "../stores";
-import { Item } from "./Item";
-import { InputAccordion } from "./InputAccordion";
-import { Welcome } from "./Welcome";
+
+import { Welcome } from "./page-components/Welcome";
 import { Page } from "./Page";
 
 // Homepage hiển thị những task chưa xong

@@ -1,0 +1,91 @@
+
+
+ .col>* {
+     border-radius: 0 !important;
+     border-width: 0;
+     font-weight: bold;
+    
+     /* background-color: red; */
+ }
+
+ .col * {
+    font-size: 0.8rem;
+   border-width: 0;
+ }
+
+ .card {
+    
+     margin: 0 2rem 0;
+     color: #516928;
+     background-image: linear-gradient(to bottom right, #CCD6A688, #DAE2B688, #F4EAD588);
+     /* background-image: linear-gradient(to bottom right, #DFE8CC88, #DFE8CC88); */
+     transition: background-image 1s ;
+ }
+
+ .card >.header {
+    color: #6e93fa;
+ }
+ 
+
+ .overdue>.header{
+    color: #D21312;
+     /* background-image: linear-gradient(to bottom right, #EEEEEE, #F9B5D0, #FF8E9E); */
+ }
+
+ .is-done>.header {
+    color: #30d230;
+     /* background-image: linear-gradient(to bottom right, #37923788, #54B43588, #82CD4788); */
+
+ }
+
+
+ .checker>* {
+     border-radius: 50% !important;
+     scale: 1.6;
+     transition: scale 0.1s;
+ }
+
+ .checker>:active {
+     scale: 2;
+ }
+
+ .icon {
+     width: 1.6rem;
+     transition: width 1s;
+     cursor: pointer;
+ }
+
+ .icon:active {
+     scale: 1.2;
+ }
+
+ .title {
+     font-weight: bold;
+ }
+
+
+ .disabled-checker {
+    color: rgba(0, 0, 0, 0.287);
+    scale: 0.8;
+ }
+
+ @media only screen and (min-width: 768px) {
+     .card {
+         margin: 0 1rem 0;
+     }
+
+     .col * {
+        font-size: 1rem;
+       border-width: 0;
+     }
+    
+     .title:hover {
+         scale: 1.05;
+         cursor: default
+     }
+
+     .icon:hover {
+         scale: 1.2;
+     }
+
+ }
