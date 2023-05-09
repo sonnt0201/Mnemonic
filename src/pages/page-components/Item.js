@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { formatTime } from "../../utils";
 import { Form, Card, Col, Stack } from "react-bootstrap";
 import { useTasks, ActionEnum } from "../../stores";
@@ -9,6 +10,7 @@ import "./Item.css";
 export const Item = ({ task, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
   const [, dispatchNoti] = useNoti();
+  const [exit, setExit] = useState(false);
   const header = (task) => {
     // return task.countDaysLeft;
     if (task.isDone) return "Đã xong";
@@ -17,13 +19,16 @@ export const Item = ({ task, setInputVal }) => {
     if (task.countDaysLeft <= 1) return "⏰ Còn chưa đầy 1 ngày";
     return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
   };
+
+
+
   return (
     <>
       <Col className="mt-3 col" lg={3} md={4} xs={12}>
         <Card
-          className={`card ${task.countDaysLeft <= 0 ? "overdue" : ""} ${
-            task.isDone ? "is-done" : ""
-          }`}
+          className={`card ${task.countDaysLeft <= 0 ? " overdue" : ""} ${
+            task.isDone ? " is-done" : ""
+          } ${exit ? " exit" : ""}`}  
         >
           <Card.Header className="header">
             <Stack direction="horizontal" style={{ whiteSpace: "nowrap" }}>
@@ -68,7 +73,7 @@ export const Item = ({ task, setInputVal }) => {
             >
               <img
                 className="icon bin-button"
-                src={Bin}
+                src={Bin.default}
                 onClick={(e) => {
                   // dispatch xóa
                   dispatchTasks({
@@ -94,7 +99,7 @@ export const Item = ({ task, setInputVal }) => {
               />
               <img
                 className="icon change-button"
-                src={Change}
+                src={Change.default}
                 onClick={(e) => {
                   // setInputVal là id của task cần sửa
                   setInputVal(task.id);

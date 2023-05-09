@@ -4,7 +4,7 @@ import { Page } from "./Page";
 import { NoContent } from "../assets/icons";
 import { useTasks } from "../stores";
 const OverallPage = () => {
-  const [inputVal, setInputVal] = useState(-1);
+  
   const [tasks] = useTasks()
   return (
     <>

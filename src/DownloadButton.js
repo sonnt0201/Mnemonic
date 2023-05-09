@@ -4,8 +4,6 @@ import './DownloadButton.css'
 export const DownloadButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
 
- 
-
 useEffect(() => {
   window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();

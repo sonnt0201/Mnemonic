@@ -8,6 +8,7 @@ import {
   OverallPage,
   DeletedPage,
   ChatPage,
+  LoginPage,
 } from "./pages";
 import { useEffect } from "react";
 import { useTasks, ActionEnum } from "./stores";
@@ -45,6 +46,7 @@ function App() {
         <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
         <Route path="/mnemonic/deleted-page" element={<DeletedPage />} />
         <Route path="/mnemonic/chatgpt" element={<ChatPage />} />
+        <Route path="/mnemonic/login" element={<LoginPage />} />
       </Routes>
 
       <ToastNoti />

@@ -68,6 +68,10 @@ function MainNavbar() {
     <>
       <Navbar expand="false" sticky="top" className="nav-bar">
         <Container>
+        <Navbar.Toggle
+            className="justify-content-start me-2"
+            aria-controls="basic-navbar-nav"
+          />
           <Navbar.Brand className="app-name">
             <Link to="/mnemonic/">MNEMONIC</Link>
           </Navbar.Brand>
@@ -93,10 +97,7 @@ function MainNavbar() {
            
           </Stack>
 
-          <Navbar.Toggle
-            className="justify-content-start me-2"
-            aria-controls="basic-navbar-nav"
-          />
+         
 
           <Navbar.Offcanvas
             id="basic-navbar-nav"
