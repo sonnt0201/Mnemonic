@@ -26,5 +26,5 @@ If you want to contribute to this project, follow these steps:
 5. Create a new Pull Request
 
 ## Credits and Attribution
-All by Son Nguyen Thai <br />
+All by Thai-Son Nguyen <br />
 May 2023
