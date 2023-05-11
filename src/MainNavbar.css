@@ -1,4 +1,6 @@
 .nav-bar  {
+    flex-wrap: nowrap;
+    /* padding: 0; */
     border-radius: 1rem;
     background-image: linear-gradient(to bottom right, #9BA17B88, #CFB99788, #F4EAD588); 
     color: black;
@@ -9,9 +11,9 @@
 }
 
 .nav-bar * {
-    /* font-size: 1rem; */
-    /* font-size:calc(1.2rem +  0.5vw); */
-    /* color: white; */
+    word-wrap: none !important;
+    /* flex-wrap: nowrap; */
+    margin: 0;
     color: #61764B;
     text-decoration: none;
     transition: color 0.5s;
@@ -22,9 +24,13 @@
 
 }
 .app-name {
-    padding: 0;
-    width: 10%;
-    font-size: 0.8rem;
+    display: none;
+    
+}
+
+.offcanvas-toggle {
+    position: absolute;
+    left: 1rem;
 }
 
 .offcanvas {
@@ -67,22 +73,40 @@
 .is-active {
     /* transition: background-image 0.5s !important; */
     background-image: linear-gradient(to right, #e0dcce, #c8c7c2); 
-   
     
 }
-@media only screen and (min-width: 768px) {
+
+.account-switch {
+    width: 2rem;
+    margin-left: 0.2rem !important;
+}
+
+.account-switch-container {
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    width: fit-content;
+}
+
+@media only screen and (min-width: 800px) {
     .app-name {
-       
+        position: absolute;
+        left: 5rem;
+        white-space: nowrap;
+       display: flex;
+        /* width: 10%; */
+      
         font-size: 1.5rem;
     }
 
-    .page-name { 
-        margin: auto;
-        margin-left: 30%;
-    }
+   
 
     .quick-options {
         display: inherit;
+        position: absolute;
+        height: 100%; 
+        right: 5rem;
+        top: 0;
     }
 
     .offcanvas {

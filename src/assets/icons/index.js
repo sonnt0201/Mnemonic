@@ -10,3 +10,4 @@ export * as Bin from "./bin.svg"
 export * as BinBlack from "./bin-black.svg"
 export * as Chat from "./chat-page.svg"
 export * as NoContent from "./no-content.svg"
+export * as AccountSwitch from './account-switch.svg'

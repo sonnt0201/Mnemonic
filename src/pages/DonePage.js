@@ -9,7 +9,7 @@ const DonePage = () => {
       <Page 
       tasks = {tasks.filter(task => !task.isDeleted && task.isDone)}
       hasInputField={false}
-      noContent={<img src={NoContent.default} />}
+      noContent={<img src={NoContent.default} alt="no-content"/>}
       />
     </>
   );

@@ -12,75 +12,74 @@ import {
   Overdue,
   Setting,
   BinBlack,
-  Chat
- 
+  Chat,
+  AccountSwitch,
 } from "./assets/icons";
 
 import "./MainNavbar.css";
 
-
 function MainNavbar() {
-  const pages = ([
+  const pages = [
     {
       linkTo: "/mnemonic/",
       pageName: "Trang Chủ",
-      icon: Home
+      icon: Home,
     },
     {
       linkTo: "/mnemonic/done-page",
       pageName: "Hoàn Thành",
-      icon: Done
+      icon: Done,
     },
     {
       linkTo: "/mnemonic/overall-page",
       pageName: "Tất Cả",
-      icon: Overall
+      icon: Overall,
     },
     {
       linkTo: "/mnemonic/overdue-page",
       pageName: "Quá Hạn",
-      icon: Overdue
+      icon: Overdue,
     },
     {
       linkTo: "/mnemonic/deleted-page",
       pageName: "Thùng Rác",
-      icon: BinBlack
+      icon: BinBlack,
     },
     {
       linkTo: "/mnemonic/chatgpt",
       pageName: "Chat",
-      icon: Chat
+      icon: Chat,
     },
     // {
     //   linkTo: "/mnemonic/setting",
     //   pageName: "Cài Đặt",
     //   icon: ""
     // },
-  ]);
+  ];
   const location = useLocation();
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
     if (currentPage) return currentPage.pageName;
     // console.log("currentPage error !!!")
-    return ""
-  }
+    return "";
+  };
   return (
     <>
       <Navbar expand="false" sticky="top" className="nav-bar">
-        <Container>
-        <Navbar.Toggle
-            className="justify-content-start me-2"
+        <Container className="justify-content-center">
+          <Navbar.Toggle
+            className="offcanvas-toggle me-2"
             aria-controls="basic-navbar-nav"
           />
           <Navbar.Brand className="app-name">
             <Link to="/mnemonic/">MNEMONIC</Link>
           </Navbar.Brand>
 
-          <Nav className="page-name">
-            <h2>
-              {getPageName()}
-            </h2>
-          </Nav>
+          <Navbar.Brand className="page-name">
+          <h2 >{getPageName()}</h2>
+          </Navbar.Brand>
+            
+          
 
           <Stack direction="horizontal" className="quick-options">
             <Link className="me-3" to="/mnemonic/done-page">
@@ -94,10 +93,15 @@ function MainNavbar() {
             <Link className="me-3" to="/mnemonic/overdue-page">
               Quá hạn
             </Link>
-           
           </Stack>
 
-         
+          <Link className="me-1 account-switch-container" to="/mnemonic/login-page">
+            <img
+              src={AccountSwitch.default}
+              className="account-switch"
+              alt="account-switch"
+            />
+          </Link>
 
           <Navbar.Offcanvas
             id="basic-navbar-nav"
@@ -113,8 +117,7 @@ function MainNavbar() {
               <Nav>
                 {/* is-active là className được thêm vào khi 1 page active => hiện css cho page active */}
                 {/* map các pages */}
-                {
-                  pages.map( page => 
+                {pages.map((page) => (
                   <Link
                     className={
                       " my-auto offcanvas-link " +
@@ -128,9 +131,8 @@ function MainNavbar() {
                       className="offcanvas-icon me-3 ms-3"
                     />
                     {page.pageName}
-                  </Link>)
-                }
-             
+                  </Link>
+                ))}
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

@@ -10,7 +10,8 @@ import "./Item.css";
 export const Item = ({ task, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
   const [, dispatchNoti] = useNoti();
-  const [exit, setExit] = useState(false);
+  const [checked, setChecked] = useState(task.isDone)
+ 
   const header = (task) => {
     // return task.countDaysLeft;
     if (task.isDone) return "Đã xong";
@@ -20,15 +21,26 @@ export const Item = ({ task, setInputVal }) => {
     return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
   };
 
+  const clickChecker  = (e) => {
+
+    setChecked(checked => !checked)
+    
+    return setTimeout(() => {
+        dispatchTasks({
+                    type: ActionEnum.TOGGLE_TASK,
+                    payload: task.id,
+                  });
+    },1000)
+  }
 
 
   return (
     <>
       <Col className="mt-3 col" lg={3} md={4} xs={12}>
         <Card
-          className={`card ${task.countDaysLeft <= 0 ? " overdue" : ""} ${
-            task.isDone ? " is-done" : ""
-          } ${exit ? " exit" : ""}`}  
+          className={`card ${task.countDaysLeft <= 0 ? "overdue" : ""} ${
+            task.isDone ? "is-done" : ""
+          } `}  
         >
           <Card.Header className="header">
             <Stack direction="horizontal" style={{ whiteSpace: "nowrap" }}>
@@ -36,13 +48,11 @@ export const Item = ({ task, setInputVal }) => {
                 className="my-auto checker"
                 type={"checkbox"}
                 inline
-                checked={task.isDone}
-                onChange={(e) => {
-                  dispatchTasks({
-                    type: ActionEnum.TOGGLE_TASK,
-                    payload: task.id,
-                  });
-                }}
+                checked={checked}
+                onChange={clickChecker}
+
+              
+
                 onMouseOver={(e) => {
                   e.target.style.cursor = "pointer";
                 }}
