@@ -1,6 +1,16 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { useContext } from "react";
+import { useTasks, TasksContext, Task, ActionEnum } from "../stores";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,10 +23,9 @@ const firebaseConfig = {
   storageBucket: "mnemonic-77c70.appspot.com",
   messagingSenderId: "406321260943",
   appId: "1:406321260943:web:5fb4d663190502df84c3fa",
-  measurementId: "G-4RVM923GB9"
+  measurementId: "G-4RVM923GB9",
 };
 
 // Initialize Firebase
-export const firebaseApp = initializeApp(firebaseConfig);
-
-
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);

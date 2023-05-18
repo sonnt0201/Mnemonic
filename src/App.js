@@ -15,6 +15,7 @@ import { useTasks, ActionEnum } from "./stores";
 import { ToastNoti } from "./ToastNoti";
 import { useNoti, NotiTypes } from "./notification";
 import { DownloadButton } from "./DownloadButton";
+import { AuthListener } from "./AuthListener";
 
 
 const TIME = 60*1000; // thời gian giữa các lần update countDaysLeft
@@ -50,7 +51,7 @@ function App() {
       </Routes>
 
       <ToastNoti />
-
+      <AuthListener/>
       {/* <DownloadButton/> */}
     </div>
   );

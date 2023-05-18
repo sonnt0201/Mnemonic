@@ -11,7 +11,7 @@ const HomePage = () => {
   return (
     <Page
       tasks={tasks.filter(
-        (task) => !task.isDeleted && !task.isDone && task.countDaysLeft > 0
+        (task) => !task.isDeleted  && task.countDaysLeft > 0
       )}
 
       hasInputField

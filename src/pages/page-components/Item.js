@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { formatTime } from "../../utils";
 import { Form, Card, Col, Stack } from "react-bootstrap";
 import { useTasks, ActionEnum } from "../../stores";
-import {Bin, Change} from "../../assets/icons";
+import { Bin, Change } from "../../assets/icons";
 
 import { useNoti, NotiTypes } from "../../notification";
 import "./Item.css";
+import { Checker } from "./Checker";
 
 export const Item = ({ task, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
   const [, dispatchNoti] = useNoti();
-  const [checked, setChecked] = useState(task.isDone)
- 
+  const [checked, setChecked] = useState(task.isDone);
+
   const header = (task) => {
     // return task.countDaysLeft;
     if (task.isDone) return "Đã xong";
@@ -21,18 +22,27 @@ export const Item = ({ task, setInputVal }) => {
     return `Còn hơn ${Math.floor(task.countDaysLeft)} ngày nữa`;
   };
 
-  const clickChecker  = (e) => {
+  const clickChecker = (e) => {
+    // fire noti
+    if (!task.isDone)
+      dispatchNoti({
+        type: NotiTypes.ADD,
+        payload: {
+          content: <p>Đã hoàn thành {task.name} </p>,
+          linkTo: "/mnemonic/done",
+          time: new Date(),
+        },
+      });
 
-    setChecked(checked => !checked)
-    
-    return setTimeout(() => {
-        dispatchTasks({
-                    type: ActionEnum.TOGGLE_TASK,
-                    payload: task.id,
-                  });
-    },1000)
-  }
+    setTimeout(() => {
+      dispatchTasks({
+        type: ActionEnum.TOGGLE_TASK,
+        payload: task.id,
+      });
+    }, 500);
 
+    // return
+  };
 
   return (
     <>
@@ -40,7 +50,7 @@ export const Item = ({ task, setInputVal }) => {
         <Card
           className={`card ${task.countDaysLeft <= 0 ? "overdue" : ""} ${
             task.isDone ? "is-done" : ""
-          } `}  
+          } `}
         >
           <Card.Header className="header">
             <Stack direction="horizontal" style={{ whiteSpace: "nowrap" }}>
@@ -48,11 +58,13 @@ export const Item = ({ task, setInputVal }) => {
                 className="my-auto checker"
                 type={"checkbox"}
                 inline
-                checked={checked}
-                onChange={clickChecker}
-
-              
-
+                checked={task.isDone}
+                onChange={() => {
+                  dispatchTasks({
+                    type: ActionEnum.TOGGLE_TASK,
+                    payload: task.id
+                  })
+                }}
                 onMouseOver={(e) => {
                   e.target.style.cursor = "pointer";
                 }}
@@ -120,7 +132,7 @@ export const Item = ({ task, setInputVal }) => {
                     payload: {
                       content: (
                         <p>
-                           Đang chỉnh sửa <strong> {task.name}</strong>
+                          Đang chỉnh sửa <strong> {task.name}</strong>
                         </p>
                       ),
 

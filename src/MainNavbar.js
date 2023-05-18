@@ -20,6 +20,7 @@ import "./MainNavbar.css";
 
 function MainNavbar() {
   const pages = [
+  
     {
       linkTo: "/mnemonic/",
       pageName: "Trang Chủ",
@@ -50,6 +51,11 @@ function MainNavbar() {
       pageName: "Chat",
       icon: Chat,
     },
+    {
+      linkTo: "/mnemonic/login",
+      pageName: "Tài khoản",
+      icon: AccountSwitch,
+    },
     // {
     //   linkTo: "/mnemonic/setting",
     //   pageName: "Cài Đặt",
@@ -61,7 +67,7 @@ function MainNavbar() {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
     if (currentPage) return currentPage.pageName;
     // console.log("currentPage error !!!")
-    return "";
+    return "Trang Chủ";
   };
   return (
     <>
@@ -95,7 +101,7 @@ function MainNavbar() {
             </Link>
           </Stack>
 
-          <Link className="me-1 account-switch-container" to="/mnemonic/login-page">
+          <Link className="me-1 account-switch-container" to="/mnemonic/login">
             <img
               src={AccountSwitch.default}
               className="account-switch"
