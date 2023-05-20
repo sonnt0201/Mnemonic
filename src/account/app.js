@@ -3,13 +3,9 @@ import { getAnalytics } from "firebase/analytics";
 
 import {
   getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
+  
 } from "firebase/auth";
-import { useContext } from "react";
-import { useTasks, TasksContext, Task, ActionEnum } from "../stores";
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries

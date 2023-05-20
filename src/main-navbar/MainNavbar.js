@@ -8,52 +8,66 @@ import {
   Home,
   Overall,
   Done,
-  Infor,
   Overdue,
-  Setting,
   BinBlack,
   Chat,
   AccountSwitch,
-} from "./assets/icons";
+} from "../assets/icons";
 
 import "./MainNavbar.css";
 
 function MainNavbar() {
   const pages = [
-  
     {
       linkTo: "/mnemonic/",
       pageName: "Trang Chủ",
       icon: Home,
+      offcanvas: true,
     },
     {
       linkTo: "/mnemonic/done-page",
       pageName: "Hoàn Thành",
       icon: Done,
+      offcanvas: true,
     },
     {
       linkTo: "/mnemonic/overall-page",
       pageName: "Tất Cả",
       icon: Overall,
+      offcanvas: true,
     },
     {
       linkTo: "/mnemonic/overdue-page",
       pageName: "Quá Hạn",
       icon: Overdue,
+      offcanvas: true,
     },
     {
       linkTo: "/mnemonic/deleted-page",
       pageName: "Thùng Rác",
       icon: BinBlack,
+      offcanvas: true,
     },
     {
       linkTo: "/mnemonic/chatgpt",
       pageName: "Chat",
       icon: Chat,
+      offcanvas: true,
     },
     {
-      linkTo: "/mnemonic/login",
+      linkTo: "/mnemonic/account",
       pageName: "Tài khoản",
+      icon: AccountSwitch,
+      // offcanvas: true
+    },
+    {
+      linkTo: "/mnemonic/signin",
+      pageName: "Đăng nhập",
+      icon: AccountSwitch,
+    },
+    {
+      linkTo: "/mnemonic/signup",
+      pageName: "Đăng kí",
       icon: AccountSwitch,
     },
     // {
@@ -66,7 +80,6 @@ function MainNavbar() {
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
     if (currentPage) return currentPage.pageName;
-    // console.log("currentPage error !!!")
     return "Trang Chủ";
   };
   return (
@@ -82,10 +95,8 @@ function MainNavbar() {
           </Navbar.Brand>
 
           <Navbar.Brand className="page-name">
-          <h2 >{getPageName()}</h2>
+            <h2>{getPageName()}</h2>
           </Navbar.Brand>
-            
-          
 
           <Stack direction="horizontal" className="quick-options">
             <Link className="me-3" to="/mnemonic/done-page">
@@ -101,7 +112,10 @@ function MainNavbar() {
             </Link>
           </Stack>
 
-          <Link className="me-1 account-switch-container" to="/mnemonic/login">
+          <Link
+            className="me-1 account-switch-container"
+            to="/mnemonic/account"
+          >
             <img
               src={AccountSwitch.default}
               className="account-switch"
@@ -121,24 +135,45 @@ function MainNavbar() {
 
             <Offcanvas.Body className="offcanvas-body">
               <Nav>
-                {/* is-active là className được thêm vào khi 1 page active => hiện css cho page active */}
-                {/* map các pages */}
-                {pages.map((page) => (
-                  <Link
-                    className={
-                      " my-auto offcanvas-link " +
-                      (location.pathname === page.linkTo ? "is-active" : "")
-                    }
-                    to={page.linkTo}
-                  >
-                    <img
-                      src={page.icon.default}
-                      alt="home"
-                      className="offcanvas-icon me-3 ms-3"
-                    />
-                    {page.pageName}
-                  </Link>
-                ))}
+                {pages.map(
+                  (page) =>
+                    page.offcanvas && (
+                      <Link
+                        className={
+                          " my-auto offcanvas-link " +
+                          (location.pathname === page.linkTo ? "is-active" : "")
+                        }
+                        to={page.linkTo}
+                      >
+                        <img
+                          src={page.icon.default}
+                          alt="home"
+                          className="offcanvas-icon me-3 ms-3"
+                        />
+                        {page.pageName}
+                      </Link>
+                    )
+                )}
+
+                {/* set  cho tài khoản */}
+                <Link
+                  className={
+                    " my-auto offcanvas-link " +
+                    (location.pathname === "/mnemonic/account" ||
+                    location.pathname === "/mnemonic/signin" ||
+                    location.pathname === "/mnemonic/signup"
+                      ? "is-active"
+                      : "")
+                  }
+                  to={"/mnemonic/account"}
+                >
+                  <img
+                    src={AccountSwitch.default}
+                    alt="home"
+                    className="offcanvas-icon me-3 ms-3"
+                  />
+                  Tài khoản
+                </Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

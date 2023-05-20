@@ -1,12 +1,21 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { auth } from "../../account";
-import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useUser } from "../../account";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [user] = useUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/mnemonic/account");
+  })
 
   return (
     <>
@@ -42,10 +51,11 @@ const LoginPage = () => {
           variant="primary"
           // type="submit"
           onClick={(e) => {
-            
+            navigate("/mnemonic/signup")
           }}
         >
-          đăng kí
+          Đăng kí
+         
         </Button>
 
         <Button
@@ -59,15 +69,7 @@ const LoginPage = () => {
           đăng nhập
         </Button>
 
-        <Button
-          variant="primary"
-          // type="submit"
-          onClick={e => {
-            
-          }}
-        >
-          đăng xuất
-        </Button>
+        
       </Form>
     </>
   );

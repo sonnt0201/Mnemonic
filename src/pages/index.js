@@ -3,5 +3,5 @@ export {default as DonePage} from './DonePage';
 export {default as OverallPage} from './OverallPage';
 export {default as OverduePage} from './OverduePage';
 export {default as DeletedPage} from './DeletedPage';
-export { LoginPage} from "./login"
-export { ChatPage } from "./chatgpt"
+export { SignUpPage, LoginPage, AccountInfor} from "./account"
+export { ChatPage } from "./chatgpt";

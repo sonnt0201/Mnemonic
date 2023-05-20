@@ -1,12 +1,22 @@
 import { saveToLocalStorage, StorageEnum } from "../utils";
 import ActionEnum from "./ActionEnum";
 import { Task } from "./Task";
-import { useNoti } from "../notification";
+
+import { fetchDataFromStore, saveTasksToStore } from "../manager/firestore";
+
+
 export const tasksReducer = (tasks, action) => {
   // tasks list sau khi thay đổi
-  
+
   let newTasks = tasks;
   switch (action.type) {
+    case ActionEnum.SET_TASKS: 
+      newTasks = action.payload;
+      
+      return newTasks
+      
+     
+
     case ActionEnum.ADD_TASK: // payload is object
       newTasks = [action.payload, ...tasks];
 
@@ -36,8 +46,8 @@ export const tasksReducer = (tasks, action) => {
         return new Task({ ...task, isDone: !task.isDone });
       });
       break;
-    
-      // thay đổi 1 task
+
+    // thay đổi 1 task
     case ActionEnum.CHANGE_TASK: // payload is an object
       newTasks = tasks.map((task) => {
         if (task.id !== action.payload.id) return task;
@@ -55,16 +65,19 @@ export const tasksReducer = (tasks, action) => {
         return task;
       });
       break;
-    
+
     case ActionEnum.EMPTY_BIN:
-      newTasks = tasks.filter(task => !task.isDeleted);
+      newTasks = tasks.filter((task) => !task.isDeleted);
       break;
     default:
       newTasks = tasks;
       break;
   }
 
-  saveToLocalStorage({ key: StorageEnum.TASKS_LIST, value: newTasks });
+  // không cần đếm ngày vì khi lấy dữ liệu lần đầu từ backend sẽ có đếm ngày
+  if (action.type !== ActionEnum.COUNT_DAYS_LEFT && action.type !== ActionEnum.FETCH)
+    saveTasksToStore( newTasks);
   // console.log(newTasks);
+    // saveToLocalStorage({ key: StorageEnum.TASKS_LIST, value: newTasks });
   return newTasks;
 };

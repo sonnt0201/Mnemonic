@@ -6,9 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { TasksProvider, useTasks } from "./stores";
 import { NotiProvider } from "./notification";
-import { useNoti, NotiTypes } from "./notification";
-import { firebase } from "./manager";
 import { UserProvider } from "./account/UserProvider";
+
+// firebase
+import { auth } from "./account";
+import { fetchDataFromStore } from "./manager/firestore";
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -28,3 +32,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitalsconsole.log(firebase.userCredential);
 reportWebVitals();
+
+

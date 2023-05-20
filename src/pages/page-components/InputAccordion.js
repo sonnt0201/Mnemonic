@@ -75,7 +75,10 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
   // khi nhấn vào nút chỉnh sửa
   useEffect(() => {
     // e.target.className += " .focused"
-    if (inputVal !== -1) window.scrollTo(0, 0)
+    if (inputVal !== -1) {
+      setActiveKey("0");
+      window.scrollTo(0, 0)
+    }
     // setActiveKey("0");
   }, [inputVal]);
 
@@ -111,7 +114,9 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                   setName(e.target.value);
                   
               }}
-
+                onClick={e => {
+                  e.stopPropagation()
+                }}
                 onKeyUp={e => {
                   // chặn đóng mở accordion khi ấn Space
                   if (e.key ===" ") {

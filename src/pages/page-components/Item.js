@@ -6,12 +6,11 @@ import { Bin, Change } from "../../assets/icons";
 
 import { useNoti, NotiTypes } from "../../notification";
 import "./Item.css";
-import { Checker } from "./Checker";
 
 export const Item = ({ task, setInputVal }) => {
   const [, dispatchTasks] = useTasks();
   const [, dispatchNoti] = useNoti();
-  const [checked, setChecked] = useState(task.isDone);
+  const [, setChecked] = useState(task.isDone);
 
   const header = (task) => {
     // return task.countDaysLeft;
