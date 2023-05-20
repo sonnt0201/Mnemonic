@@ -46,11 +46,11 @@ function MainNavbar() {
       pageName: "Thùng Rác",
       icon: BinBlack
     },
-    {
-      linkTo: "/mnemonic/chatgpt",
-      pageName: "Chat",
-      icon: Chat
-    },
+    // {
+    //   linkTo: "/mnemonic/chatgpt",
+    //   pageName: "Chat",
+    //   icon: Chat
+    // },
     // {
     //   linkTo: "/mnemonic/setting",
     //   pageName: "Cài Đặt",

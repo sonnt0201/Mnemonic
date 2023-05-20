@@ -11,7 +11,7 @@ const HomePage = () => {
   const [content, setContent] = useState([]);
   useEffect(()=> {
     setContent(tasks.filter(task => !task.isDeleted));
-    console.log(content)
+    
   },[tasks])
 
   return (
