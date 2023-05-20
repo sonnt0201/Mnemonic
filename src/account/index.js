@@ -1,3 +1,3 @@
-export {auth} from './app.js';
-export {useUser} from './UserContext.js';
-export {UserProvider} from './UserProvider.js'
+export { auth, signIn, signUp, signOutApp, signInWithGoogle } from "./app.js";
+export { useUser } from "./UserContext.js";
+export { UserProvider } from "./UserProvider.js";

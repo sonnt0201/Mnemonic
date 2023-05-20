@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { auth } from "../../account";
+import { auth, signIn, signInWithGoogle } from "../../account";
 import { useEffect, useState } from "react";
 import { useUser } from "../../account";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -14,7 +14,11 @@ export const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) navigate("/mnemonic/account");
+
+    if (user) {
+      alert(user.uid);
+      navigate("/mnemonic/account");
+    }
   })
 
   return (
@@ -63,12 +67,25 @@ export const LoginPage = () => {
           variant="primary"
           // type="submit"
           onClick={e => {
-            signInWithEmailAndPassword(auth, email, password);
+            signIn({email: email, password: password}).then(() => {
+              navigate("/mnemonic/")
+            })
           }}
         >
           đăng nhập
         </Button>
-
+        <Button
+        className="sign-in"
+          variant="primary"
+          // type="submit"
+          onClick={e => {
+            signInWithGoogle().then(() => {
+              navigate("/mnemonic/")
+            })
+          }}
+        >
+          đăng nhập  với google
+        </Button>
         
       </Form>
     </>

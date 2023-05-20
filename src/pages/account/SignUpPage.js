@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { auth } from "../../account";
-import { useState } from "react";
+import { auth, signUp } from "../../account";
+import { useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,6 +14,8 @@ export const SignUpPage = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+ 
+
   return (
     <>
       <>
@@ -49,12 +51,9 @@ export const SignUpPage = () => {
             variant="primary"
             // type="submit"
             onClick={(e) => {
-              createUserWithEmailAndPassword(auth, email, password).then(
-                (user) => {
-                  // addNewUserToStore(user.uid);
-                  navigate("/mnemonic/")
-                }
-              );
+              signUp({email: email, password: password}).then(() => {
+                navigate("/mnemonic");
+              })
             }}
           >
             đăng kí

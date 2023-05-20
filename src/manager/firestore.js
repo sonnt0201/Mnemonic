@@ -46,7 +46,7 @@ const fetchDataFromStore = async () => {
     return tasks;
   } catch (error) {
     console.log(error.message);
-    return [];
+    
   }
 };
 

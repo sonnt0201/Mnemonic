@@ -9,7 +9,7 @@ export const AuthListener = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
-
+      
       if (user) {
         fetchDataFromStore().then((data) => {
             dispatchTasks({
