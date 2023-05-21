@@ -12,7 +12,7 @@ export const Welcome = () => {
   return (
     <>
       {isSafari ? (
-        <WelcomeGif />
+        <img src = {WelcomeGif.default} />
       ) : (
         <video
         className="welcome-vid"

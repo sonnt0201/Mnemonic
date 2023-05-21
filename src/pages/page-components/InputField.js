@@ -32,8 +32,9 @@ export const InputField = ({
  
   return (
     <Form style={{ textAlign: "left" }}>
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridPassword">
+
+      <Row >
+        <Form.Group xs={12} md={6} as={Col} controlId="formGridPassword">
           {/* ĐIỀN NGÀY THÁNG */}
           <Form.Label>Hạn chót (MM/DD/YYYY)</Form.Label>
           <Form.Control
@@ -44,7 +45,7 @@ export const InputField = ({
             }}
           />
         </Form.Group>
-        <Form.Group as={Col} controlId="formGridEmail">
+        <Form.Group className="mt-3" as={Col} controlId="formGridEmail">
           <Form.Label>Ghi chú</Form.Label>
           <Form.Control
             as="textarea"
@@ -57,7 +58,8 @@ export const InputField = ({
         </Form.Group>
       </Row>
 
-    
+<Row>
+  </Row>    
 
       
     </Form>
