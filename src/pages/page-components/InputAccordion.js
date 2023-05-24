@@ -2,10 +2,9 @@ import { Accordion, Row, Form, Stack, Button } from "react-bootstrap";
 import { InputField } from "./InputField";
 import { useEffect, useState } from "react";
 import "./InputAccordion.css";
-import { Task ,useTasks, ActionEnum} from "../../stores";
+import { Task, useTasks, ActionEnum } from "../../stores";
 import { NotiTypes, useNoti } from "../../notification";
 export const InputAccordion = ({ inputVal, setInputVal }) => {
-
   const [activeKey, setActiveKey] = useState("1");
 
   const [name, setName] = useState("");
@@ -14,38 +13,36 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
   const [tasks, dispatchTasks] = useTasks();
   const [noti, dispatchNoti] = useNoti();
   const handleSubmit = (e) => {
-    
     let id, type;
     const now = new Date();
     // lấy id và tên
     if (inputVal === -1 && name) {
       id = tasks.length + 1;
       type = ActionEnum.ADD_TASK;
-     
-       // hiện  thông báo
-    dispatchNoti({
-      type: NotiTypes.ADD,
-      payload: {
-        content: `Đã thêm một công việc mới: ${name.toUpperCase()}`, 
-        link: '/mnemonic',
-        time: now
-      }
-    })
 
+      // hiện  thông báo
+      dispatchNoti({
+        type: NotiTypes.ADD,
+        payload: {
+          content: `Đã thêm một công việc mới: ${name.toUpperCase()}`,
+          link: "/mnemonic",
+          time: now,
+        },
+      });
     } else {
+      //  sửa một task
       id = inputVal;
       type = ActionEnum.CHANGE_TASK;
 
       // Hiện thông báo
-      dispatchNoti({
+      if (name) dispatchNoti({
         type: NotiTypes.ADD,
-        payload:  {
-          content: `Sửa thành công: ${name.toUpperCase()}`, 
-          link: '/mnemonic',
-          time: now
-        }
-  
-      })
+        payload: {
+          content: `Sửa thành công: ${name.toUpperCase()}`,
+          link: "/mnemonic",
+          time: now,
+        },
+      });
     }
 
     // thêm task với dispatch
@@ -62,14 +59,11 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
       }),
     });
 
-   
     // đưa các giá trị input về mặc định
     setName("");
     setDeadline("");
     setNote("");
     setInputVal(-1);
-
-
   };
 
   // khi nhấn vào nút chỉnh sửa
@@ -77,19 +71,15 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
     // e.target.className += " .focused"
     if (inputVal !== -1) {
       setActiveKey("0");
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
     }
     // setActiveKey("0");
   }, [inputVal]);
 
   return (
     <>
-      <Accordion
-        activeKey={activeKey}
-     
-        className="accordion"
-      >
-        <Accordion.Item eventKey="0">
+      <Accordion activeKey={activeKey} className="accordion">
+        <Accordion.Item eventKey="0" className="accordion-item" >
           <Accordion.Header
             onClick={(e) => {
               setActiveKey((prevKey) => {
@@ -97,11 +87,10 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                 return "1";
               });
             }}
-
-            
             className="input-header"
+            
           >
-            <Stack direction="horizontal" style={{ whiteSpace: "nowrap", }}>
+            <Stack direction="horizontal" style={{ whiteSpace: "nowrap" }}>
               <Form.Label className="me-2 my-auto">
                 {inputVal === -1 ? "➕ Thêm" : "🖊️ Sửa"}
               </Form.Label>
@@ -112,17 +101,16 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
-                  
-              }}
-                onClick={e => {
-                  e.stopPropagation()
                 }}
-                onKeyUp={e => {
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                onKeyUp={(e) => {
                   // chặn đóng mở accordion khi ấn Space
-                  if (e.key ===" ") {
+                  if (e.key === " ") {
                     e.preventDefault();
                     // setActiveKey(activeKey => activeKey === "1" ? "0" : "1")
-                  };
+                  }
 
                   // enter để submit
                   if (e.key === "Enter") {
@@ -130,7 +118,6 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                     handleSubmit();
                   }
                 }}
-
                 onBlur={(e) => setName(e.target.value.toUpperCase())}
                 required
               />
@@ -139,7 +126,10 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
             <Button
               variant="success"
               className=" submit-button"
-              onClick={handleSubmit}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSubmit();
+              }}
             >
               ✔
             </Button>
@@ -149,6 +139,7 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
                 className=" cancel-button "
                 variant="danger"
                 onClick={(e) => {
+                  e.stopPropagation();
                   setName("");
                   setDeadline("");
                   setNote("");
@@ -161,7 +152,7 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
             )}
           </Accordion.Header>
 
-          <Accordion.Body>
+          <Accordion.Body >
             {/* Form điền ở đây 
             InputField là trường thêm hoặc sửa task, nếu inputVal = -1 => thêm task
             inputVal != -1, sửa task với task cần sửa có id = inputVal

@@ -11,6 +11,7 @@ import {
   AccountInfor,
   SignUpPage,
   LoginPage,
+  PendingPage
 } from "./pages";
 import { useEffect } from "react";
 import { useTasks, ActionEnum } from "./stores";
@@ -25,7 +26,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!user) navigate("mnemonic/signin");
+    if (!user) navigate("/mnemonic/signin"); else navigate("/mnemonic")
     // if (user ) dispatchTasks({type: ActionEnum.FETCH, payload: null})
   }, []);
 
@@ -53,6 +54,7 @@ function App() {
             <Route path="/mnemonic/" element={<HomePage />} />
             <Route path="/mnemonic/done-page" element={<DonePage />} />
             <Route path="/mnemonic/overall-page" element={<OverallPage />} />
+            <Route path="/mnemonic/pending-page" element={<PendingPage />} />
             <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
             <Route path="/mnemonic/deleted-page" element={<DeletedPage />} />
             <Route path="/mnemonic/chatgpt" element={<ChatPage />} />

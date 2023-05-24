@@ -15,6 +15,7 @@ import {
 } from "../assets/icons";
 
 import "./MainNavbar.css";
+import { useUser } from "../account";
 
 function MainNavbar() {
   const pages = [
@@ -31,8 +32,8 @@ function MainNavbar() {
       offcanvas: true,
     },
     {
-      linkTo: "/mnemonic/overall-page",
-      pageName: "Tất Cả",
+      linkTo: "/mnemonic/pending-page",
+      pageName: "Chưa Xong",
       icon: Overall,
       offcanvas: true,
     },
@@ -76,6 +77,9 @@ function MainNavbar() {
     //   icon: ""
     // },
   ];
+
+  const [user] = useUser();
+
   const location = useLocation();
   const getPageName = () => {
     const currentPage = pages.find((page) => page.linkTo === location.pathname);
@@ -86,10 +90,10 @@ function MainNavbar() {
     <>
       <Navbar expand="false" sticky="top" className="nav-bar">
         <Container className="justify-content-center">
-          <Navbar.Toggle
+          {user && <Navbar.Toggle
             className="offcanvas-toggle me-2"
             aria-controls="basic-navbar-nav"
-          />
+          />}
           <Navbar.Brand className="app-name">
             <Link to="/mnemonic/">MNEMONIC</Link>
           </Navbar.Brand>
@@ -113,14 +117,20 @@ function MainNavbar() {
           </Stack>
 
           <Link
-            className="me-1 account-switch-container"
+            className="me-1 mt-1 account-switch-container"
             to="/mnemonic/account"
           >
+            <Container direction="vertical" className = "justify-content-center">
             <img
               src={AccountSwitch.default}
               className="account-switch"
               alt="account-switch"
             />
+            <p style={{fontWeight: "500", fontSize: "0.8rem"}}>
+              {user ? user.email.replace("@gmail.com", "") : ""}
+            </p>
+            </Container>
+            
           </Link>
 
           <Navbar.Offcanvas
@@ -172,7 +182,7 @@ function MainNavbar() {
                     alt="home"
                     className="offcanvas-icon me-3 ms-3"
                   />
-                  Tài khoản
+                  {user? user.email.replace("@gmail.com", "") : "Tài khoản"}
                 </Link>
               </Nav>
             </Offcanvas.Body>

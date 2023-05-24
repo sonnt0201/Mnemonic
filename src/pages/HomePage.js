@@ -1,4 +1,3 @@
-
 import { useTasks } from "../stores";
 
 import { Welcome } from "./page-components/Welcome";
@@ -10,13 +9,9 @@ const HomePage = () => {
   const [tasks] = useTasks();
   return (
     <Page
-      tasks={tasks.filter(
-        (task) => !task.isDeleted  && task.countDaysLeft > 0
-      )}
-
+      tasks={tasks.filter((task) => !task.isDeleted)}
       hasInputField
-
-      noContent = {<Welcome/>}
+      noContent={<Welcome />}
     />
   );
 };

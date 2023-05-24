@@ -1,11 +1,13 @@
 import { Form } from "react-bootstrap";
-
+import "./AccountInput.css"
 export const AccountInput = ({username, setUsername,password, setPassword}) => {
   
-    return (  <Form>
+    return (  <Form className = "account-input">
+       
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Tên đăng nhập</Form.Label>
+          <Form.Label className="label">Tên đăng nhập</Form.Label>
           <Form.Control
+            className="input-field"
             type="text"
             placeholder="Tên đăng nhập"
             value={username}
@@ -17,8 +19,9 @@ export const AccountInput = ({username, setUsername,password, setPassword}) => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Mật khẩu</Form.Label>
+          <Form.Label className="label">Mật khẩu</Form.Label>
           <Form.Control
+          className="input-field"
             type="password"
             placeholder="Mật khẩu"
             value={password}

@@ -6,13 +6,11 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 export const Welcome = () => {
   const videoRef = useRef(null);
-  // useEffect(() => {
-  //   videoRef.current.play();
-  // }, []);
+ 
   return (
     <>
       {isSafari ? (
-        <img src = {WelcomeGif.default} />
+        <img src = {WelcomeGif.default} disablePictureInPicture/>
       ) : (
         <video
         className="welcome-vid"
@@ -23,6 +21,7 @@ export const Welcome = () => {
           autoPlay={true}
           muted
           playsInline
+          disablePictureInPicture
           controlsList="nodownload"
           onContextMenu={e => {
             e.preventDefault()
