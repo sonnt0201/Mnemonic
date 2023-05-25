@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/mnemonic/static/css/main.48ba43fa.css",
-    "main.js": "/mnemonic/static/js/main.2cac0c54.js",
+    "main.css": "/mnemonic/static/css/main.fa9ece0c.css",
+    "main.js": "/mnemonic/static/js/main.3d28544a.js",
     "static/js/787.1a8e646b.chunk.js": "/mnemonic/static/js/787.1a8e646b.chunk.js",
     "static/media/welcome.gif": "/mnemonic/static/media/welcome.65b4af669fcb7b5e38b9.gif",
     "static/media/welcome.mp4": "/mnemonic/static/media/welcome.86ce35cb49b2c39c44ca.mp4",
@@ -22,12 +22,12 @@
     "static/media/change.svg": "/mnemonic/static/media/change.11f8175786d5db638c2594a9b4a143be.svg",
     "static/media/infor.svg": "/mnemonic/static/media/infor.73c1de2f0d674fba9fa184529efa9e68.svg",
     "static/media/account-switch.svg": "/mnemonic/static/media/account-switch.88321004faccdc9fddae772ef1367df2.svg",
-    "main.48ba43fa.css.map": "/mnemonic/static/css/main.48ba43fa.css.map",
-    "main.2cac0c54.js.map": "/mnemonic/static/js/main.2cac0c54.js.map",
+    "main.fa9ece0c.css.map": "/mnemonic/static/css/main.fa9ece0c.css.map",
+    "main.3d28544a.js.map": "/mnemonic/static/js/main.3d28544a.js.map",
     "787.1a8e646b.chunk.js.map": "/mnemonic/static/js/787.1a8e646b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48ba43fa.css",
-    "static/js/main.2cac0c54.js"
+    "static/css/main.fa9ece0c.css",
+    "static/js/main.3d28544a.js"
   ]
 }
