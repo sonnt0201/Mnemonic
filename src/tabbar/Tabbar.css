@@ -1,0 +1,38 @@
+
+.tabbar {
+    background-color: white;
+    /* background-image: linear-gradient(to bottom right,  #FAD6A5, rgb(236, 225, 225) ); */
+    /* border-radius: 2rem; */
+    /* margin: 0.2rem; */
+    padding: 0.5rem;
+}
+
+.tabbar * {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #61764B;
+    
+}
+
+.tabbar img{
+    width: 1.3rem ;
+    opacity: 0.8;
+   
+}
+
+
+
+.selected {
+    color: #6581ef;
+   
+}
+
+.selected img{
+    opacity: 1 !important;
+}
+@media only screen and (min-width: 540px) {
+  .tabbar {
+    display: none
+  }
+  }

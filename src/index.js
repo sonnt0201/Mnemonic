@@ -6,22 +6,33 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { TasksProvider, useTasks } from "./stores";
 import { NotiProvider } from "./notification";
-import { useNoti, NotiTypes } from "./notification";
+import { UserProvider } from "./account/UserProvider";
+import { AuthListener } from "./AuthListener";
+// firebase
+import { auth } from "./account";
+import { fetchDataFromStore } from "./manager/firestore";
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <NotiProvider>
-        <TasksProvider>
-          <App />
-        </TasksProvider>
-      </NotiProvider>
+      <UserProvider>
+      
+        <NotiProvider>
+          <TasksProvider>
+          
+            <App />
+          </TasksProvider>
+        </NotiProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitalsconsole.log(firebase.userCredential);
 reportWebVitals();
+
+

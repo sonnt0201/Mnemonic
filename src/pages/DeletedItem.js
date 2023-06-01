@@ -17,7 +17,7 @@ export const DeletedItem = ({ task }) => {
   
   return (
           <>
-            <Col lg="3" className="mt-3">
+            <Col lg="3" className="mt-3 deleted-item">
               <Card className="">
                 <Card.Header>
                   

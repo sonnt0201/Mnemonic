@@ -1,0 +1,9 @@
+.content-header {
+    color: #7286D3;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.no-content * {
+    width: calc(min(90vh, 90vw));
+}

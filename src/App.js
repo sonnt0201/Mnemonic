@@ -1,22 +1,30 @@
 import "./App.css";
-import MainNavbar from "./MainNavbar";
-import { Routes, Route } from "react-router-dom";
+import { MainNavbar } from "./main-navbar";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
   DonePage,
   HomePage,
   OverduePage,
-  PendingPage,
+  OverallPage,
   DeletedPage,
   ChatPage,
+  AccountInfor,
+  SignUpPage,
+  LoginPage,
+  PendingPage,
 } from "./pages";
 import { useEffect } from "react";
 import { useTasks, ActionEnum } from "./stores";
 import { ToastNoti } from "./ToastNoti";
-import { useNoti, NotiTypes } from "./notification";
-
-const TIME = 60*1000; // thời gian giữa các lần update countDaysLeft
+import { AuthListener } from "./AuthListener";
+import { useUser } from "./account";
+import { DownloadButton } from "./DownloadButton";
+import { Tabbar } from "./tabbar";
+const TIME = 60 * 1000; // thời gian giữa các lần update countDaysLeft
 function App() {
   const [tasks, dispatchTasks] = useTasks();
+  const [user] = useUser();
+  const navigate = useNavigate();
 
   // useEffect để gọi bộ đếm, đếm mỗi phút
   useEffect(() => {
@@ -32,20 +40,34 @@ function App() {
     return () => clearInterval(checker);
   }, []); // chỉ chạy lần đầu render
 
- 
+  //  if (!user) return <LoginPage/>
   return (
     <div className="App">
+      <AuthListener />
       <MainNavbar />
       <Routes>
+        {/* mở thì nhảy thẳng vào home, nếu không có user thì nhảy sang login */}
         <Route path="/mnemonic/" element={<HomePage />} />
-        <Route path="/mnemonic/done-page" element={<DonePage />} />
-        <Route path="/mnemonic/pending-page" element={<PendingPage />} />
-        <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
-        <Route path="/mnemonic/deleted-page" element={<DeletedPage />} />
-        <Route path="/mnemonic/chatgpt" element={<ChatPage />} />
+        {user && (
+          <>
+            <Route path="/mnemonic/done-page" element={<DonePage />} />
+            <Route path="/mnemonic/overall-page" element={<OverallPage />} />
+            <Route path="/mnemonic/pending-page" element={<PendingPage />} />
+            <Route path="/mnemonic/overdue-page" element={<OverduePage />} />
+            <Route path="/mnemonic/deleted-page" element={<DeletedPage />} />
+            <Route path="/mnemonic/chatgpt" element={<ChatPage />} />
+          </>
+        )}
+
+        <Route path="/mnemonic/signin" element={<LoginPage />} />
+        <Route path="/mnemonic/account" element={<AccountInfor />} />
+        <Route path="/mnemonic/signup" element={<SignUpPage />} />
       </Routes>
 
       <ToastNoti />
+
+      <DownloadButton/>
+      {user && <Tabbar/>}
     </div>
   );
 }

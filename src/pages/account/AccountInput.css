@@ -1,0 +1,35 @@
+
+.account-input  {
+
+   /* position: absolute; */
+    margin: 1rem 10% 1rem;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-image: linear-gradient(to bottom right, #FFE7CC, #FFFBEB, #ECF9FF);
+    animation: account-input-entrance 0.3s 0s 1 normal ease backwards 
+}
+
+.account-input * {
+    font-weight: bold;
+    color: #376705;
+}
+
+.label {
+    display: none;
+}
+
+.input-field {
+    margin: 1rem 0 1rem;
+    border: none;
+}
+
+@keyframes account-input-entrance {
+    from {
+        margin: 100vw 10% 1rem;
+
+    }
+
+    to {
+        margin: 1rem 10% 1rem;
+    }
+}

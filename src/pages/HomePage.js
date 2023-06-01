@@ -1,35 +1,26 @@
-import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
 import { useTasks } from "../stores";
-import { Item } from "./Item";
-import { InputAccordion } from "./InputAccordion";
-import { Welcome } from "./Welcome";
+
+import { Welcome } from "./page-components/Welcome";
+import { Page } from "./Page";
+import { useUser } from "../account";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// Homepage hiển thị những task chưa xong
+// Homepage kế thừa Page
 const HomePage = () => {
-  const [inputVal, setInputVal] = useState(-1);
   const [tasks] = useTasks();
-
-  const [content, setContent] = useState([]);
-  useEffect(()=> {
-    setContent(tasks.filter(task => !task.isDeleted));
-    
-  },[tasks])
-
+  const [user] = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) navigate("/mnemonic") ; else  navigate("/mnemonic/signin")
+    // if (user ) dispatchTasks({type: ActionEnum.FETCH, payload: null})
+  }, []);
   return (
-    <>
-      <InputAccordion inputVal={inputVal} setInputVal={setInputVal} />
-
-      <Container className="content">
-        <Row>
-          {content.map((task) => 
-             <Item task={task} setInputVal={setInputVal} />
-          )}
-
-          {
-          // (content === []) &&
-           <Welcome />}
-        </Row>
-      </Container>
-    </>
+    <Page
+      tasks={tasks.filter((task) => !task.isDeleted)}
+      hasInputField
+      noContent={<Welcome />}
+    />
   );
 };
 

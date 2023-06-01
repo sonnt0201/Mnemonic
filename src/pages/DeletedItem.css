@@ -2,8 +2,25 @@
     width: 1.2rem;
     scale: 1;
     transition: scale 0.3s;
+    
 }
 
 .icon:active {
     scale: 1.2;
+}
+
+.deleted-item * {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 768px) {
+    
+    .deleted-item * {
+        font-size: 1rem;
+       
+    }
+
+
+
 }

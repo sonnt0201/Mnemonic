@@ -1,54 +1,41 @@
-import { Container, Row, Col } from "react-bootstrap";
-import {
-  Home,
-  Pending,
-  Done,
-  Infor,
-  Overdue,
-  Setting,
-  BinBlack,
-  Chat,
-} from "../assets/icons";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import './Tabbar.css'
+import { Col, Nav, Navbar, Row } from "react-bootstrap"
+import { Link, useLocation } from "react-router-dom"
+import { Done, Home, Overdue, PendingIcon } from "../assets/icons"
+import "./Tabbar.css"
+
 export const Tabbar = () => {
-    
-  const pages = [
-    {
-      linkTo: "/mnemonic/",
-    //   pageName: "Trang Chủ",
-      icon: Home,
-    },
-    {
-      linkTo: "/mnemonic/pending-page",
-    //   pageName: "Chưa Xong",
-      icon: Pending,
-    },
-    {
-      linkTo: "/mnemonic/done-page",
-    //   pageName: "Hoàn Thành",
-      icon: Done,
-    },
 
-    {
-      linkTo: "/mnemonic/overdue-page",
-    //   pageName: "Quá Hạn",
-      icon: Overdue,
-    },
-  ];
+    const location = useLocation()
 
-  const location = useLocation();
-  const usePage = useState(pages.find(page => page.linkTo === location.pathname))
+    return <Navbar  className="justify-content-center tabbar" fixed = "bottom" >
+        
+        <Nav.Item as={Col} xs = {3} >
+            <Link to = "/mnemonic/"  className={location.pathname === "/mnemonic" ? "selected" : "link"}>
+                <img src={Home.default} alt="pending" /><br/>
+                Trang chủ
+            </Link>
+        </Nav.Item>
+        <Nav.Item  as={Col} xs = {3} >
+            <Link to = "/mnemonic/pending-page" className={location.pathname === "/mnemonic/pending-page" ? "selected" : "link"}>
+            <img src={PendingIcon.default} alt="pending" /><br/>
+                Chờ
+            </Link>
+        </Nav.Item>
+        <Nav.Item as={Col} xs = {3}>
+            <Link to = "/mnemonic/done-page" className={location.pathname === "/mnemonic/done-page" ? "selected" : "link"}>
+            <img src={Done.default} alt="pending" /><br/>
+                Xong
+            </Link>
+        </Nav.Item>
+        <Nav.Item as={Col} xs = {3}>
+            <Link to = "/mnemonic/overdue-page" className={location.pathname === "/mnemonic/overdue-page" ? "selected" : "link"}>
+            <img src={Overdue.default} alt="pending" /><br/>
+                Quá hạn
+            </Link>
+        </Nav.Item>
 
-  return (
-    <Container className="justify-content-center">
-      <Row>
-        <Col>1 of 3</Col>
-        <Col>2 of 3</Col>
-        <Col>3 of 3</Col>
-        <Col>3 of 3</Col>
-      </Row>
-    </Container>
-  );
-};
+       
+        
+       
+    </Navbar>
+}

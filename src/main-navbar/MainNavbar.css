@@ -1,0 +1,119 @@
+.nav-bar  {
+    flex-wrap: nowrap;
+    /* padding: 0; */
+    border-radius: 1rem;
+    background-image: linear-gradient(to bottom right, #9BA17B88, #CFB99788, #F4EAD588); 
+    color: black;
+    /* background-image: linear-gradient(to bottom right, #CF0DC7, #6563E2, #08C6CE); */
+    /* color: white; */
+    font-weight: bold;
+    margin: 0.2rem;
+}
+
+.nav-bar * {
+    word-wrap: none !important;
+    /* flex-wrap: nowrap; */
+    margin: 0;
+    color: #61764B;
+    text-decoration: none;
+    transition: color 0.5s;
+}
+
+.nav-bar * :hover {
+    color: #9BA17B;
+
+}
+.app-name {
+    display: none;
+    
+}
+
+.offcanvas-toggle {
+    position: absolute;
+    left: 1rem;
+}
+
+.offcanvas {
+    width: 60% !important;
+    transition-duration: 0.1s !important;
+    /* background-image: linear-gradient(to right, #FFFBEB, #ECF9FF); */
+    border-width: 0 !important;
+  
+}
+
+.quick-options {
+    display: none;
+}
+
+.offcanvas-header * {
+    font-weight: bolder;
+}
+
+.offcanvas-body{
+    padding: 0 !important;
+} 
+
+
+.offcanvas-link, .offcanvas-link:active{
+    text-decoration: none;
+    color:  #61764B;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 0.8rem 0 0.8rem;
+}
+
+.offcanvas-link:hover{
+    color:  #3f5b21;
+}
+
+.offcanvas-icon {
+    width: 1.5rem;
+}
+
+.is-active {
+    /* transition: background-image 0.5s !important; */
+    background-image: linear-gradient(to right, #e0dcce, #c8c7c2); 
+    
+}
+
+.account-switch {
+    width: 2rem;
+    margin-left: 0.2rem !important;
+    
+}
+
+.account-switch-container {
+    padding: 0;
+    position: absolute;
+    right: 1rem;
+    width: fit-content;
+}
+
+@media only screen and (min-width: 800px) {
+    .app-name {
+        position: absolute;
+        left: 5rem;
+        white-space: nowrap;
+       display: flex;
+        /* width: 10%; */
+      
+        font-size: 1.5rem;
+    }
+
+    .quick-options {
+        display: inherit;
+        position: absolute;
+        height: 100%; 
+        right: 5rem;
+        top: 0;
+    }
+
+    .offcanvas {
+        width: 20% !important;
+    }
+   
+    .offcanvas-link, .offcanvas-link:active{
+      
+        font-size: 1rem;
+    }   
+}
