@@ -1,12 +1,13 @@
 import { Form } from "react-bootstrap";
 import "./AccountInput.css"
-export const AccountInput = ({username, setUsername,password, setPassword}) => {
+export const AccountInput = ({username, setUsername,password, setPassword, onClick}) => {
   
-    return (  <Form className = "account-input">
+    return (  <Form className = "account-input" onClick={onClick}>
        
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label className="label">Tên đăng nhập</Form.Label>
           <Form.Control
+          autoComplete="off"
             className="input-field"
             type="text"
             placeholder="Tên đăng nhập"

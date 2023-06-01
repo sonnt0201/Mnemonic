@@ -1,6 +1,6 @@
 import { Spinner } from "react-bootstrap";
 
-export const LoadingAnimation = (isActive) => {
+export const LoadingAnimation = ({isActive}) => {
   return (isActive === true) ? (
     <div className="spinners">
       <Spinner className="me-2" animation="grow" size="sm" variant="primary" />

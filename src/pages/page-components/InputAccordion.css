@@ -46,8 +46,8 @@
 .submit-button,
 .cancel-button {
     border-radius: 50%;
-    width: 2rem !important;
-    height: 2rem !important;
+    width: 1.8rem !important;
+    height: 1.8rem !important;
     color: white ;
     text-align: center;
     /* font-size: 1rem; */

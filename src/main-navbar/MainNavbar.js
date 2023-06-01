@@ -49,12 +49,12 @@ function MainNavbar() {
       icon: BinBlack,
       offcanvas: true,
     },
-    {
-      linkTo: "/mnemonic/chatgpt",
-      pageName: "Chat",
-      icon: Chat,
-      offcanvas: true,
-    },
+    // {
+    //   linkTo: "/mnemonic/chatgpt",
+    //   pageName: "Chat",
+    //   icon: Chat,
+    //   offcanvas: true,
+    // },
     {
       linkTo: "/mnemonic/account",
       pageName: "Tài khoản",

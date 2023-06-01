@@ -1,0 +1,51 @@
+
+
+.account-page {
+    width: min(100vw, 540px);
+    margin: auto
+}
+.greeting {
+    font-family: 'Chewy', cursive;
+    color: #61764B;
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.alert {
+    margin: 0rem 10% 0rem;
+    border-radius: 2rem;
+}
+
+.signin-button {
+    font-weight: 600;
+    width: 80%;
+    margin: 1rem 0 1rem;
+    border-radius: 3rem;
+    background-image: linear-gradient(to bottom right, #61764B, #7f865c);
+    animation: account-input-entrance 0.3s 0.1s 1 normal ease backwards 
+}
+
+.signup-hint {
+    font-weight: 600;
+    margin: 0;
+    /* font-size: 0.9rem; */
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0rem;
+    width: 100%;
+    text-align: center;
+}
+
+.signup-hint > a {
+    color: #61764B;
+    font-weight: 700;
+    
+}
+
+@keyframes signin-button-entrance {
+    from {
+        margin-top: 100vh;
+    }
+    
+}
+

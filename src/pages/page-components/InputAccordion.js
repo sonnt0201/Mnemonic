@@ -15,6 +15,14 @@ export const InputAccordion = ({ inputVal, setInputVal }) => {
   const handleSubmit = (e) => {
     let id, type;
     const now = new Date();
+    if (!name) dispatchNoti({
+      type: NotiTypes.ADD,
+      payload : {
+        content: <p>Chưa nhập tên công việc</p>,
+        time: now,
+        link: null,
+      }
+    })
     // lấy id và tên
     if (inputVal === -1 && name) {
       id = tasks.length + 1;

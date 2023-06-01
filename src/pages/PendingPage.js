@@ -10,7 +10,7 @@ const PendingPage = () => {
   return (
     <>
       <Page
-      tasks={tasks.filter(task => !task.isDeleted)}
+      tasks={tasks.filter(task => !task.isDeleted && !task.isDone && task.countDaysLeft > 0 )}
       hasInputField
       noContent={<img src={NoContent.default}/> }
       />

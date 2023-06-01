@@ -29,8 +29,10 @@ export const auth = getAuth(app);
 
 export const signIn = async ({ username, password }) => {
   try {
-    signInWithEmailAndPassword(auth, username + "@gmail.com", password);
-  } catch (error) {}
+    await signInWithEmailAndPassword(auth, username + "@gmail.com", password);
+  } catch (error) {
+    throw Error(error.code);
+  }
 };
 
 export const signOutApp = async () => {

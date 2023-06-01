@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { TasksProvider, useTasks } from "./stores";
 import { NotiProvider } from "./notification";
 import { UserProvider } from "./account/UserProvider";
-
+import { AuthListener } from "./AuthListener";
 // firebase
 import { auth } from "./account";
 import { fetchDataFromStore } from "./manager/firestore";
@@ -18,8 +18,10 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
+      
         <NotiProvider>
           <TasksProvider>
+          
             <App />
           </TasksProvider>
         </NotiProvider>

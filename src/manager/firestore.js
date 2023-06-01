@@ -24,7 +24,7 @@ const addNewUserToStore = async () => {
   }
 };
 
-const saveTasksToStore = async (tasks) => {
+const saveTasksToFirestore = async (tasks) => {
   try {
     let data = JSON.stringify(tasks);
 
@@ -42,13 +42,13 @@ const fetchDataFromStore = async () => {
       doc(firestore, "user-tasks", auth.currentUser.uid)
     );
     let data = docSnap.get("data") ;
-    console.log(data);
+    // console.log(data);
   
       // console.log(false);
      
      if (data) tasks = JSON.parse(data).map((task) => new Task({ ...task }));
       else tasks = [];
-    console.log(tasks);
+    // console.log(tasks);
 
     return tasks;
   } catch (error) {
@@ -56,4 +56,4 @@ const fetchDataFromStore = async () => {
   }
 };
 
-export { saveTasksToStore, fetchDataFromStore, addNewUserToStore };
+export { saveTasksToFirestore, fetchDataFromStore, addNewUserToStore };

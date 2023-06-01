@@ -12,10 +12,12 @@ import { Decoration } from "./Decoration";
 import { LoadingAnimation } from "./LoadingAnimation";
 import { Alert } from "react-bootstrap";
 
+import "./LoginPage.css";
 export const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
   const [user] = useUser();
   const navigate = useNavigate();
 
@@ -27,44 +29,48 @@ export const LoginPage = () => {
   });
 
   return (
-    <>
-      <h3 className="greeting">
-        WELCOME !!
-      </h3>
-      <LoadingAnimation isActive = {loading}/>
+    <div className="account-page">
+      <h3 className="greeting">WELCOME !!</h3>
+      <LoadingAnimation isActive={loading} />
       <AccountInput
+        onClick={() => setError("")}
         username={username}
         setUsername={setUsername}
         password={password}
         setPassword={setPassword}
       />
 
-     {/* <Alert variant="danger">
-
-     </Alert> */}
+      {error && (
+        <Alert variant="danger" className="alert" onClick={() => setError("")}>
+          {error}
+        </Alert>
+      )}
 
       <Button
         className="signin-button "
         variant="primary"
         // size="lg"
         // type="submit"
-        onClick={(e) => {
-          setLoading(true)
-          signIn({ username: username, password: password }).then(() => {
-            setLoading(false)
-            navigate("/mnemonic");
-
-          });
+        onClick={async (e) => {
+          setLoading(true);
+          signIn({ username: username, password: password })
+            .then(() => {
+              setLoading(false);
+            })
+            .catch((error) => {
+              setError("Sai tên đăng nhập hoặc mật khẩu, hãy thử lại");
+              setLoading(false);
+            });
         }}
       >
-        đăng nhập
+        Đăng nhập
       </Button>
 
-        <Decoration/>
+      <Decoration />
       <p className="signup-hint">
-        Bạn chưa có tài khoản ? <Link to = "/mnemonic/signup">Đăng kí</Link>
+        Bạn chưa có tài khoản ? <Link to="/mnemonic/signup">Đăng kí</Link>
       </p>
-    </>
+    </div>
   );
 };
 

@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { auth, useUser } from "./account";
-import { fetchDataFromStore } from "./manager/firestore";
+import { fetchDataFromStore, saveTasksToFirestore } from "./manager/firestore";
 import { ActionEnum, useTasks } from "./stores";
 import { Navigate, useNavigate } from "react-router-dom";
+import { StorageEnum, saveToLocalStorage } from "./utils";
 
 export const AuthListener = () => {
   const [user, setUser] = useUser();
@@ -11,7 +12,7 @@ export const AuthListener = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       setUser(user);
-      
+      saveToLocalStorage({key: StorageEnum.USER, value: user})
       if (user) {
         navigate("/mnemonic")
         fetchDataFromStore().then((data) => {
@@ -19,7 +20,9 @@ export const AuthListener = () => {
                 type:ActionEnum.SET_TASKS,
                 payload: data,
             })
-        });
+        }) 
+      } else {
+        saveToLocalStorage({key: StorageEnum.TASKS_LIST, value: []});
       }
     });
   }, []);

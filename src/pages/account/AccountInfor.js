@@ -17,7 +17,7 @@ export const AccountInfor = () => {
   return (
     <>
       <h1>this is AccountInfor</h1>
-      <h2> {user ? user.email : ""}</h2>
+      <h2> {user ? user.email.replace("@gmail.com", "") : ""}</h2>
       <Button
         className="log-out"
         onClick={() => {
