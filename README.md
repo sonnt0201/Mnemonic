@@ -1,5 +1,5 @@
 # MNEMONIC
-
+Host: https://sonnt0201.github.io/mnemonic
 MNEMONIC is a simple to-do list application that allows users to create to-do flashcards for their tasks. Users can create new flashcards, or edit, delete  existing one, manage which tasks are completed, overdue or still pending.
 
 ## Features
